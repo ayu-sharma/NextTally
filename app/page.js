@@ -27,7 +27,7 @@ export default function Home() {
         </Link> */}
       </div>
       <div className='my-20'>
-        <div className='text-center text-bold text-7xl'>Effortlessly manage <span className='relative'>Taxes<span className='absolute left-0 right-0 bottom-0 h-3 bg-[#CBE64E]'></span> </span>,<br /><div className='mt-8'><span className='relative'>Revenue<span className='absolute left-0 right-0 bottom-0 h-3 bg-[#CBE64E]'></span> </span> and <span className='relative'> Profits <span className='absolute left-0 right-0 -bottom-0 h-3 bg-[#996AFA]'></span> </span></div> </div>
+        <div className='text-center text-bold text-7xl'>Effortlessly manage <span className='relative'>Taxes<span className='absolute left-0 right-0 bottom-0 h-3 bg-[#CBE64E]'></span></span> , <br /><div className='mt-8'><span className='relative'>Revenue<span className='absolute left-0 right-0 bottom-0 h-3 bg-[#CBE64E]'></span></span> and <span className='relative'> Profits <span className='absolute left-0 right-0 -bottom-0 h-3 bg-[#996AFA]'></span> </span></div> </div>
       </div>
       <div className='flex flex-col items-center'>
         <p className='text-center font-extralight leading-1 text-xl'>Streamline tax management across multiple locations with ease. Our unified platform provides real-time tracking, <br/> comprehensive reporting, and robust control, empowering admins and managers to monitor and optimize revenue and tax <br/> performance efficiently, ensuring compliance and boosting profitability.</p>
