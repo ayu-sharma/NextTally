@@ -16,7 +16,6 @@ const Navbar = () => {
             <div className="text-black font-monospace">How it Works</div>
           </Link>
         </div>
-
       </div>
     </nav>
   );
