@@ -12,3 +12,58 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Admin {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  password  String
+  branches  Branch[]
+}
+
+model Branch {
+  id        Int       @id @default(autoincrement())
+  name      String
+  location  String
+  adminId   Int
+  managerId Int       @unique
+  admin     Admin     @relation(fields: [adminId], references: [id])
+  manager   Manager   @relation(fields: [managerId], references: [id])
+  movies    Movie[]
+}
+
+model Manager {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  password  String
+  branch    Branch?
+}
+
+model Movie {
+  id          Int           @id @default(autoincrement())
+  title       String
+  branchId    Int
+  branch      Branch         @relation(fields: [branchId], references: [id])
+  seatCategories SeatCategory[]
+}
+
+model SeatCategory {
+  id          Int           @id @default(autoincrement())
+  name        String
+  price       Float
+  movieId     Int
+  movie       Movie          @relation(fields: [movieId], references: [id])
+  seatBookings SeatBooking[]
+}
+
+model SeatBooking {
+  id             Int           @id @default(autoincrement())
+  seatsOccupied  Int
+  bookingDate    DateTime
+  categoryId     Int
+  category       SeatCategory  @relation(fields: [categoryId], references: [id])
+
+  @@index([categoryId, bookingDate])
+}
+
