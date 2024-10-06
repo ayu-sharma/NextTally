@@ -49,7 +49,8 @@ export async function POST (request: NextRequest) {
                     branchId: branchId
                 }
             });
-            const newSeatCategory = await db.seatCategory.create({
+
+            await db.seatCategory.create({
                 data: {
                     name: seatCategory.categoryName,
                     price: seatCategory.price,
@@ -63,7 +64,7 @@ export async function POST (request: NextRequest) {
         });
 
         return NextResponse.json({
-            message: "Movie and seat categories created successfully",
+            message: "Movie and seat category created successfully",
             movie: newMovie
         }, {
             status: 201

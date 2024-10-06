@@ -40,8 +40,9 @@ export const seatCategorySchema = z.object({
     managerId: z.number(),
     movieId: z.number(),
     seatCategory: z.object({
-    categoryName: z.string(),
-    price: z.number().positive(),
+        categoryName: z.string(),
+        price: z.number().positive(),
+        totalSeats: z.number().int().positive()
     }),
 });
 
