@@ -52,6 +52,7 @@ model SeatCategory {
   id          Int           @id @default(autoincrement())
   name        String
   price       Float
+  totalSeats  Int
   movieId     Int
   movie       Movie          @relation(fields: [movieId], references: [id])
   seatBookings SeatBooking[]
