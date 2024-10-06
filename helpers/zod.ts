@@ -27,8 +27,15 @@ export const newBranchInput = z.object({
     managerName: z.string(),
     managerEmail: z.string().email(),
     managerPassword: z.string().min(8)
-})
+});
+
+// Manager login :-
+export const managerLoginInput = z.object({
+    email: z.string().email(),
+    password: z.string().min(8)
+});
 
 export type AdminSignupInput = z.infer<typeof adminSignupInput>;
 export type AdminLoginInput = z.infer<typeof adminLoginInput>;
 export type NewBranchInput = z.infer<typeof newBranchInput>;
+export type ManagerLoginInput = z.infer<typeof managerLoginInput>;
