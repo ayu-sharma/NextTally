@@ -18,5 +18,17 @@ export const adminLoginInput = z.object({
     password: z.string().min(8)
 });
 
-export type SignupInput = z.infer<typeof adminSignupInput>;
-export type LoginInput = z.infer<typeof adminLoginInput>;
+// Create branch under existing Admin :-
+
+export const newBranchInput = z.object({
+    adminId: z.number(),
+    branchName: z.string(),
+    branchLocation: z.string(),
+    managerName: z.string(),
+    managerEmail: z.string().email(),
+    managerPassword: z.string().min(8)
+})
+
+export type AdminSignupInput = z.infer<typeof adminSignupInput>;
+export type AdminLoginInput = z.infer<typeof adminLoginInput>;
+export type NewBranchInput = z.infer<typeof newBranchInput>;
