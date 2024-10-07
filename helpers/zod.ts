@@ -57,9 +57,21 @@ export const newMovieSchema = z.object({
     })
 });
 
+// Seat booking schema :-
+
+export const seatBookingSchema = z.object({
+    seatsOccupied: z.number().min(1, 'Atleast 1 seat must be booked'),
+    bookingDate: z.string().refine(
+        (date) => !isNaN(new Date(date).getTime()),
+        'Invalid date format'
+    ),
+    categoryId: z.number().int()
+});
+
 export type AdminSignupInput = z.infer<typeof adminSignupInput>;
 export type AdminLoginInput = z.infer<typeof adminLoginInput>;
 export type NewBranchInput = z.infer<typeof newBranchInput>;
 export type ManagerLoginInput = z.infer<typeof managerLoginInput>;
 export type SeatCategorySchema = z.infer<typeof seatCategorySchema>;
 export type NewMovieSchema = z.infer<typeof newMovieSchema>;
+export type SeatBookingSchema = z.infer<typeof seatBookingSchema>;
