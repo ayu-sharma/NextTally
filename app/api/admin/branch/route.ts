@@ -3,6 +3,74 @@ import { newBranchInput } from "../../../../helpers/zod";
 import { db } from "../../../../lib/db";
 import { genSalt, hash } from "bcrypt";
 
+export async function GET (request: NextRequest) {
+    try {
+        const { searchParams } = new URL(request.url);
+        const adminId = parseInt(searchParams.get('adminId'), 10);
+
+        if (!adminId || isNaN(adminId)) {
+            return NextResponse.json({
+                error: 'Admin ID is required and must be a valid integer'
+            }, {
+                status: 400
+            });
+        }
+
+        const admin = await db.admin.findUnique({
+            where: {
+                id: adminId
+            }
+        });
+
+        if (!admin) {
+            return NextResponse.json({
+                error: "Admin not found"
+            }, {
+                status: 400
+            });
+        }
+
+        const branches = await db.branch.findMany({
+            where: {
+                adminId: adminId
+            },
+            include: {
+                manager: true,
+                movies: {
+                    include: {
+                        seatCategories: {
+                            include: {
+                                seatBookings: true
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        if (!branches.length) {
+            return NextResponse.json({
+                error: "No branches found for this admin"
+            }, {
+                status: 400
+            });
+        }
+
+        return NextResponse.json({
+            branches
+        }, {
+            status: 200
+        });
+    } catch (error) {
+        console.error("Error fetching branch details: ", error);
+        return NextResponse.json({
+            error: "Error while fetching branches"
+        }, {
+            status: 500
+        });
+    }
+}
+
 export async function POST (request: NextRequest) {
     try {
         const body = await request.json();
