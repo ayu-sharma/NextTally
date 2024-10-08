@@ -59,8 +59,36 @@ export async function GET(request: NextRequest) {
             });
         }
 
+        const branchWithRevenue = {
+            ...branchDetails,
+            movies: branchDetails.movies.map(movie => {
+                let totalMovieRevenue = 0;
+
+                const seatCategoriesWithRevenue = movie.seatCategories.map(category => {
+                    const totalSeatsOccupied = category.seatBookings.reduce(
+                        (sum, booking) => sum + booking.seatsOccupied,
+                        0
+                    );
+                    const categoryRevenue = totalSeatsOccupied * category.price;
+                    totalMovieRevenue += categoryRevenue;
+
+                    return {
+                        ...category,
+                        totalSeatsOccupied,
+                        categoryRevenue
+                    }
+                });
+
+                return {
+                    ...movie,
+                    seatCategoriesWithRevenue,
+                    totalMovieRevenue
+                };
+            })
+        };
+
         return NextResponse.json({
-            branchDetails
+            branch: branchWithRevenue
         }, {
             status: 200
         });
