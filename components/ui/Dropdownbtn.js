@@ -10,7 +10,7 @@ export default function Dropdownbtn({ buttonName, menuItems, className }) {
         <PopupState variant="popover" popupId="demo-popup-menu">
             {(popupState) => (
                 <React.Fragment>
-                    <Button className={`bg-[#4353F0] ${className}`} style={{ textTransform: 'none' }} {...bindTrigger(popupState)}>
+                    <Button className={` ${className}`} style={{ textTransform: 'none' }} {...bindTrigger(popupState)}>
                         {buttonName}
                     </Button>
                     <Menu {...bindMenu(popupState)}>
