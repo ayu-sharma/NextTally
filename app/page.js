@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar';
 import logol from '../public/images/logol.svg';
 import Dropdownbtn from '../components/ui/Dropdownbtn';
 import Button from '../components/ui/Button';
+
 export default function Home() {
   const menuItems = [
     { label: 'For Admin', link: '/admin-login' },
@@ -26,7 +27,7 @@ export default function Home() {
           <Navbar />
         </div>
         <Link href="">
-          <Dropdownbtn className="text-white bg-black px-4 rounded-md text-lg font-bold hover:opacity-90" buttonName="Login" menuItems={menuItems} />
+          <Dropdownbtn className="text-white bg-black px-4 py-2 rounded-md text-lg font-bold hover:opacity-90" buttonName="Login" menuItems={menuItems} />
         </Link>
       </div>
       <div className='my-20'>
