@@ -3,6 +3,7 @@ import Button from './ButtonCmp'
 import Image from 'next/image';
 import googlelogo from '../../public/images/googlelogo.svg';
 import close from '../../public/images/modalclose.svg'
+import Link from 'next/link';
 export default function Signin_admin({ onClose }) {
     return (
         <>
@@ -23,7 +24,7 @@ export default function Signin_admin({ onClose }) {
                                 <button className='bg-white text-black text-sm py-2.5 rounded-lg mt-4 px-5 cursor-default'>Already have an account? <span onClick={{}} className='text-blue-600 cursor-pointer'> Login here</span>.</button>
                             </div>
                         </div>
-                        <div className='flex flex-col w-full pt-24 px-20'>
+                        <div className='flex flex-col w-full pt-24 lg:px-20 px-10'>
                             <div className='text-2xl font-bold'>
                                 Get Started
                             </div>
@@ -41,7 +42,9 @@ export default function Signin_admin({ onClose }) {
 
                             </div>
                             <div className='w-full'>
+                            <Link href="/setting-manager" className="w-full">
                                 <Button className='rounded-lg text-sm py-2.5 px-4 text-white mt-5 font-bold hover:opacity-90 max-w-lg w-full' btnName="Signup" />
+                                </Link>
                             </div>
                             <div className=" relative w-full h-0 border border-gray-300 border-opacity-60 transform -rotate-0.5 mt-14">
                                 <div className="relative flex justify-center">

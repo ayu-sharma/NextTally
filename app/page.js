@@ -65,7 +65,7 @@ export default function Home() {
 
         <div>
           <button 
-            className='rounded-lg text-xl py-4 px-6 text-white my-10 font-bold hover:opacity-90 bg-black hover:bg-gray-900' 
+            className='rounded-lg text-xl py-2 px-6 text-white my-10 font-bold hover:opacity-90 bg-black hover:bg-gray-900' 
             onClick={() => handleMenuClick("Signup")}
           >
             Get Started

@@ -11,13 +11,13 @@ export default function Signin_admin({onClose}) {
             </div>
             <div className='w-full overflow-y-auto'>
                 <div className='flex flex-col w-full'>
-                    <div className='flex-1 flex items-start flex-row w-full'>
-                        <div className='bg-gradient-to-b from-[#185FF6] to-[#1B45A6] h-[36rem] max-w-xl w-full flex flex-col pt-20 pl-10'>
+                    <div className='flex-1 items-start flex flex-row w-full'>
+                        <div className='hidden lg:flex bg-gradient-to-b from-[#185FF6] to-[#1B45A6] h-[46rem] max-w-xl w-full flex-col pt-20 pl-10'>
                             <div className='text-white font-bold text-2xl'>
                                 The Simplest way to manage <br /> your revenue
                             </div>
                         </div>
-                        <div className='flex flex-col w-full pt-24 px-20'>
+                        <div className='flex flex-col justify-center w-full lg:pt-24 pt-16 md:pb-10 lg:px-20 px-10'>
                             <div className='text-2xl font-bold'>
                                 Access Your Dashboard
                             </div>
