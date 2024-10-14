@@ -15,6 +15,9 @@ const Navbar = () => {
           <Link href="/contact">
             <div className="text-black font-monospace">How it Works</div>
           </Link>
+          <Link href="/contact">
+            <div className="text-black font-monospace">Pricing</div>
+          </Link>
         </div>
       </div>
     </nav>
