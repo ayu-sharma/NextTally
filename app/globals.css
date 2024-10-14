@@ -28,3 +28,6 @@ background: linear-gradient(180deg, #EDF3F5 0%, #E1E9EF 52%);
     text-wrap: balance;
   }
 }
+.buton-custom-color {
+  background-color: black !important;
+}

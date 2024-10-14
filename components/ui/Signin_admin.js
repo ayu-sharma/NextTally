@@ -1,5 +1,5 @@
 import react from 'react';
-import Button from '../ui/Button'
+import Button from './ButtonCmp'
 import Image from 'next/image';
 import googlelogo from '../../public/images/googlelogo.svg';
 import close from '../../public/images/modalclose.svg'
