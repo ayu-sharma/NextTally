@@ -13,8 +13,8 @@ export default function DropdownMenu({ buttonLabel, menuItems }) {
         <MenuItems
           className="absolute right-0 w-52 origin-top-right rounded-xl border border-white/5 bg-gray-900 p-1 text-sm text-white shadow-lg transition duration-100 ease-out focus:outline-none"
         >
-          {menuItems?.map((item, index) => (
-            <MenuItem key={index} as="button" onClick={item.action} className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 hover:bg-white/10">
+          {menuItems?.map((item, id) => (
+            <MenuItem key={id} as="button" onClick={item.action} className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 hover:bg-white/10">
               {item.icon && <item.icon className="h-4 w-4 fill-white/30" />}
               {item.label}
               {item.shortcut && (

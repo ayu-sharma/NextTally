@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import logol from '../public/images/logol.svg';
-import Dropdownbtn from '../components/ui/Dropdownbtn';
 import HandleModals from '../components/handlemodals';
 
 export default function Home() {
@@ -35,21 +34,10 @@ export default function Home() {
 
   return (
     <div className=" flex flex-col justify-between ">
-      <div className={`flex justify-between items-center py-8 px-9`}>
-        <div className='pb-4'>
-          <Image src={logol} alt='NextTally Logo' height={44} />
+        <div className=''>
+        <Navbar menuItems={menuItems} />
         </div>
-        <div className='md:block hidden'>
-        <Navbar />
-        </div>
-        <div className='md:block hidden'>
-        <Dropdownbtn 
-          className="text-white bg-black px-4 py-2 rounded-md text-lg font-bold hover:bg-gray-900" 
-          buttonName="Login" 
-          menuItems={menuItems}
-        />
-        </div>
-      </div>
+        
       <div className='my-32 px-4'>
         <div className='flex flex-col items-center gap-8 max-w-6xl mx-auto'>
           <div>
@@ -67,7 +55,7 @@ export default function Home() {
         </h2>
         </div>
           <button 
-            className='rounded-lg text-xl py-2 px-6 text-white font-bold hover:opacity-90 bg-black hover:bg-gray-900 flex items-center mx-auto' 
+            className='rounded-lg text-lg py-2 px-6 text-white font-bold hover:opacity-90 bg-black hover:bg-gray-900 flex items-center mx-auto' 
             onClick={() => handleMenuClick("Signup")}
           >
             Get Started

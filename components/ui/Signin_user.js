@@ -25,7 +25,7 @@ export default function Signin_admin({onClose}) {
                                 Enter you credentials to access your account
                             </div>
                             <div className='pt-6 w-full flex flex-col'>
-                                <input type='email' placeholder='Email Address..' className='border-2 border-gray-300 rounded-md py-2.5 px-6 w-full mt-1 text-xs' />
+                                <input type='email' id="emal_user" placeholder='Email Address..' className='border-2 border-gray-300 rounded-md py-2.5 px-6 w-full mt-1 text-xs' />
 
                                 <input type='password' placeholder='Password' className='border-2 border-gray-300 rounded-md py-2.5 px-6 w-full text-xs mt-4' />
 
