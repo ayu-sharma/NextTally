@@ -1,9 +1,35 @@
-import react from 'react';
+import React, {useState, useEffect} from 'react';
 import Button from './ButtonCmp'
 import Image from 'next/image';
 import googlelogo from '../../public/images/googlelogo.svg';
 import close from '../../public/images/modalclose.svg'
+import { useRouter } from 'next/navigation';
+
 export default function Signin_admin({onClose}) {
+    const [ isScreenLarge, setIsScreenLarge] = useState(false)
+    const router = useRouter()
+    useEffect(()=> {
+        const checkScreenSize = () => {
+            if(window.innerWidth >= 774) {
+                setIsScreenLarge(true);
+            }
+            else {
+                setIsScreenLarge(false);
+                router.push('/admin-login')
+            }
+        }
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+
+        return () => {
+            window.removeEventListener('resize', checkScreenSize);
+        }
+},[])
+
+if (!isScreenLarge) {
+    return null;
+  }
+
     return (
         <>
             <div className='absolute top-4 right-4 md:top-4 md:right-4 p-2 cursor-pointer hover:bg-neutral-100 rounded-lg z-10 bg-white' onClick={onClose}>
@@ -12,7 +38,7 @@ export default function Signin_admin({onClose}) {
             <div className='w-full overflow-y-auto'>
                 <div className='flex flex-col w-full'>
                     <div className='flex-1 items-start flex flex-row w-full'>
-                        <div className='hidden lg:flex bg-gradient-to-b from-[#185FF6] to-[#1B45A6] h-[46rem] max-w-xl w-full flex-col pt-20 pl-10'>
+                    <div className='bg-gradient-to-b from-[#185FF6] to-[#1B45A6] h-[36rem] max-w-xl w-full lg:flex hidden flex-col pt-20 pl-10'>
                             <div className='text-white font-bold text-2xl'>
                                 The Simplest way to manage <br /> your revenue
                             </div>

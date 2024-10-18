@@ -1,9 +1,33 @@
-import react from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from './ButtonCmp'
 import Image from 'next/image';
-import googlelogo from '../../public/images/googlelogo.svg';
 import close from '../../public/images/modalclose.svg'
-export default function Signin_admin({onClose}) {
+import { useRouter } from 'next/navigation';
+export default function Signin_admin({onClose, setIsScreenLarge,isScreenLarge}) {
+
+    const [ isScreenLargeCheck, setIsScreenLargeCheck] = useState(false)
+    const router = useRouter()
+    useEffect(()=> {
+        const checkScreenSize = () => {
+            if(window.innerWidth >= 774) {
+                setIsScreenLargeCheck(true);
+            }
+            else {
+                setIsScreenLargeCheck(false);
+                router.push('/user-login')
+            }
+        }
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+
+        return () => {
+            window.removeEventListener('resize', checkScreenSize);
+        }
+},[router])
+
+if (!isScreenLargeCheck) {
+    return null;
+  }
     return (
         <>
             <div className='absolute top-4 right-4 md:top-4 md:right-4 p-2 cursor-pointer hover:bg-neutral-100 rounded-lg z-10 bg-white' onClick={onClose}>
@@ -12,12 +36,12 @@ export default function Signin_admin({onClose}) {
             <div className='w-full overflow-y-auto'>
                 <div className='flex flex-col w-full'>
                     <div className='flex-1 flex items-center flex-row w-full'>
-                        <div className='bg-gradient-to-b from-[#185FF6] to-[#1B45A6] h-[36rem] max-w-xl w-full flex flex-col pt-20 pl-10'>
+                        <div className='bg-gradient-to-b from-[#185FF6] to-[#1B45A6] h-[36rem] max-w-xl w-full lg:flex hidden flex-col pt-20 pl-10'>
                             <div className='text-white font-bold text-2xl'>
                                 The Simplest way to manage <br /> your revenue
                             </div>
                         </div>
-                        <div className='flex flex-col w-full px-20'>
+                        <div className='flex flex-col justify-center w-full lg:pt-24 pt-16 md:pb-10 lg:px-20 px-10'>
                             <div className='text-2xl font-bold'>
                             Access Theater Operations
                             </div>

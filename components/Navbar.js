@@ -52,7 +52,7 @@ const Navbar = ({ menuItems }) => {
 
       {/* Mobile Menu - Slide in from right */}
       <div
-        className={`fixed top-0 right-0 h-full w-full bg-white p-6 transition-transform duration-300 ease-in-out z-50 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed top-0 right-0 h-full w-64 bg-white p-6 transition-transform duration-300 ease-in-out z-50 ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         {/* Close Button */}
         <div className="flex justify-end">

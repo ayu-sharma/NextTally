@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import logol from '../public/images/logol.svg';
 import HandleModals from '../components/handlemodals';
+import Link from 'next/link';
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,12 +55,14 @@ export default function Home() {
           across locations.
         </h2>
         </div>
+        <Link href="/admin-signup">
           <button 
             className='rounded-lg text-lg py-2 px-6 text-white font-bold hover:opacity-90 bg-black hover:bg-gray-900 flex items-center mx-auto' 
-            onClick={() => handleMenuClick("Signup")}
+            
           >
             Get Started
           </button>
+          </Link>
           </div>
       </div>
       {/* Fullscreen Overlay when SigninAdmin is open */}

@@ -63,7 +63,7 @@ export async function POST (request: NextRequest) {
 
             return newAdmin;
         });
-
+            // console.log("this is how new admin comes", newAdmin);
         const token = await sign({id: newAdmin.id}, JWT_SECRET);
 
         return NextResponse.json({

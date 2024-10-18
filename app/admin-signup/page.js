@@ -1,19 +1,17 @@
 import react from 'react';
-import Button from './ButtonCmp'
+import Button from '../../components/ui/ButtonCmp'; 
 import Image from 'next/image';
 import googlelogo from '../../public/images/googlelogo.svg';
 import close from '../../public/images/modalclose.svg'
 import Link from 'next/link';
 export default function Signin_admin({ onClose }) {
+    
     return (
         <>
-            <div className='absolute top-4 right-4 md:top-4 md:right-4 p-2 cursor-pointer hover:bg-neutral-100 rounded-lg z-10 bg-white' onClick={onClose}>
-                <Image src={close} alt='Admin Signin Button' />
-            </div>
             <div className='w-full overflow-y-auto'>
                 <div className='flex flex-col w-full'>
                     <div className='flex-1 flex items-start flex-row w-full'>
-                        <div className='bg-gradient-to-b from-[#185FF6] to-[#1B45A6] h-screen max-w-xl w-full flex flex-col justify-center items-center'>
+                        <div className='bg-gradient-to-b from-[#185FF6] to-[#1B45A6] h-screen max-w-xl w-full hidden md:flex flex-col justify-center items-center'>
                             <div className='text-white font-bold text-2xl'>
                                 Come Join Us
                             </div>
@@ -48,7 +46,7 @@ export default function Signin_admin({ onClose }) {
                             </div>
                             <div className=" relative w-full h-0 border border-gray-300 border-opacity-60 transform -rotate-0.5 mt-14">
                                 <div className="relative flex justify-center">
-                                    <div className="absolute bg-white p-2 -top-5">Or</div>
+                                    <div className="absolute bg-[#E1E9EF] p-2 -top-5">Or</div>
                                 </div>
                             </div>
                             <div className='flex justify-center cursor-pointer hover:bg-neutral-100 items-center px-4 py-1 border rounded-xl mx-auto mt-9 gap-2'>
