@@ -39,6 +39,6 @@ body {
   background: linear-gradient(180deg, #EDF3F5 0%, #E1E9EF 52%);
 }
 
-.border-color {
-  
+.home-navbar-color {
+background: linear-gradient(180deg, #EDF3F5 42%, #F4F3EE 72.5%);
 }

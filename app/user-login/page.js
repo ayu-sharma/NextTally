@@ -1,9 +1,5 @@
 import react from "react";
 import Button from "../../components/ui/ButtonCmp";
-import Image from "next/image";
-import googlelogo from "../../public/images/googlelogo.svg";
-import close from "../../public/images/modalclose.svg";
-import logol from "../../public/images/logol.svg";
 // import { Image } from 'next/image';
 export default function Signin_admin({ onClose }) {
   return (
@@ -11,7 +7,7 @@ export default function Signin_admin({ onClose }) {
       <div className="w-full overflow-y-auto">
         <div className="flex flex-col w-full">
           <div className="flex-1 items-center flex flex-row w-full">
-            <div className="hidden md:flex bg-gradient-to-b from-[#185FF6] to-[#1B45A6] h-screen max-w-lg w-full flex-col pt-20 pl-10">
+            <div className="hidden md:flex bg-gradient-to-b from-[#185FF6] to-[#1B45A6] h-[38rem] max-w-xl w-full flex-col pt-20 pl-10">
               <div className="font-inter font-semibold md:text-[2rem] leading-[1.2] antialiased text-primary -tracking-[0.019em] md:-tracking-[0.021em] text-white ">
                 Effortless Revenue Management <br /> Made Simple
               </div>
@@ -49,8 +45,7 @@ export default function Signin_admin({ onClose }) {
                 </a>
                 .
               </div>
-              </div>
-
+            </div>
           </div>
         </div>
       </div>

@@ -71,19 +71,22 @@ export default function Signin_admin({ onClose }) {
                   btnName="Login"
                 />
               </div>
-              <div className="text-black font-bold text-xs mt-1">
+              <div className="text-black font-light text-xs mt-2">
                 Don&apos;t have an account yet? No problem!{" "}
                 <a className="text-blue-700" href="#">
                   Create one now
                 </a>
                 .
               </div>
-              <div className=" relative w-full h-0 border border-gray-300 border-opacity-60 transform -rotate-0.5 mt-14">
+              <a href="#" className="font-light text-xs mt-1 text-blue-700">
+                Forgotten Password
+              </a>
+              <div className=" relative w-full h-0 border border-gray-300 border-opacity-60 transform -rotate-0.5 mt-10">
                 <div className="relative flex justify-center">
                   <div className="absolute bg-white p-2 -top-5">Or</div>
                 </div>
               </div>
-              <div className="flex justify-center cursor-pointer hover:bg-neutral-100 items-center px-4 py-1 border rounded-xl mx-auto mt-9 gap-2">
+              <div className="flex justify-center cursor-pointer hover:bg-neutral-100 items-center px-4 py-1 border rounded-xl mx-auto mt-9 gap-2 md:mb-6 lg:mb-0">
                 <div>
                   <Image src={googlelogo} alt="Google Logo Image" />
                 </div>
