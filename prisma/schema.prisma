@@ -31,7 +31,7 @@ model Branch {
   manager   Manager   @relation(fields: [managerId], references: [id])
   movies    Movie[]
 }
-// employee code? Token?
+
 model Manager {
   id        Int       @id @default(autoincrement())
   name      String
