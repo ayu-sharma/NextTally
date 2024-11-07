@@ -32,10 +32,10 @@ export default function Signin_admin() {
                 />
                 <div className="flex flex-col mt-10 gap-3">
                   <div
-                    className={`flex flex-row items-center gap-3 cursor-pointer ${
+                    className={`flex flex-row items-center gap-3 cursor-pointer px-6 py-3 ${
                       page === 1
-                        ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] py-3 px-6 text-white"
-                        : "bg-none px-6 py-3"
+                        ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] text-white"
+                        : "bg-none"
                     }`}
                   >
                     <Image
@@ -48,10 +48,10 @@ export default function Signin_admin() {
                     <h1 className="">Admin Signup</h1>
                   </div>
                   <div
-                    className={`flex flex-row items-center gap-3 cursor-pointer ${
+                    className={`flex flex-row items-center gap-3 cursor-pointer px-6 py-3 ${
                       page === 2
-                        ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] py-3 px-6 text-white"
-                        : "bg-none px-6 py-3"
+                        ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] text-white"
+                        : "bg-none"
                     }`}
                   >
                     <Image
@@ -64,10 +64,10 @@ export default function Signin_admin() {
                     <h1 className="">Branch Details</h1>
                   </div>
                   <div
-                    className={`flex flex-row items-center gap-3 cursor-pointer ${
+                    className={`flex flex-row items-center gap-3 cursor-pointer  px-6 py-3 ${
                       page === 3
-                        ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] py-3 px-6 text-white"
-                        : "bg-none px-6 py-3"
+                        ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] text-white"
+                        : "bg-none"
                     }`}
                   >
                     <Image
