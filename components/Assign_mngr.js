@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../components/ui/ButtonCmp";
 import Image from "next/image";
 import googlelogo from "../public/images/googlelogo.svg";
+import Link from "next/link";
 export default function Signup_cmp({ renderPage }) {
   const handleClick = (e) => {
     renderPage();
@@ -13,7 +14,7 @@ export default function Signup_cmp({ renderPage }) {
           Who’s the Manager?
         </div>
         <div className="text-black text-xs">
-          Ready to Assign a Manager? Let’s Get Started!
+          Ready to Assign a Manager? Let's Get Started!
         </div>
         <div className="pt-6 w-full flex flex-col">
           <input
@@ -28,13 +29,13 @@ export default function Signup_cmp({ renderPage }) {
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
           />
         </div>
-        <div className="w-full">
+        <Link href="/admin-dashboard" className="w-full">
           <Button
             className="cursor-pointer studio-primary-gradient font-inter text-sm md:text-base -tracking-[0.006em] md:-tracking-[0.011em] text-white font-medium antialiased rounded-lg py-2.5 px-6 md:px-8 flex items-center justify-center group w-full"
             btnName="Next"
             onClick={handleClick}
           />
-        </div>
+        </Link>
       </div>
     </div>
   );

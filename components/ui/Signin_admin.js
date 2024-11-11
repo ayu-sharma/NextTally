@@ -4,7 +4,7 @@ import Image from "next/image";
 import googlelogo from "../../public/images/googlelogo.svg";
 import close from "../../public/images/modalclose.svg";
 import { useRouter } from "next/navigation";
-
+import Link from "next/link";
 export default function Signin_admin({ onClose }) {
   const [isScreenLarge, setIsScreenLarge] = useState(false);
   const router = useRouter();
@@ -65,12 +65,13 @@ export default function Signin_admin({ onClose }) {
                   className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
                 />
               </div>
-              <div className="w-full">
+              <Link href= "/admin-dashboard" className="w-full">
                 <Button
+                
                   className="cursor-pointer studio-primary-gradient font-inter text-sm md:text-base -tracking-[0.006em] md:-tracking-[0.011em] text-white font-medium antialiased rounded-lg py-2.5 px-6 md:px-8 flex items-center justify-center group w-full"
                   btnName="Login"
                 />
-              </div>
+              </Link>
               <div className="text-black font-light text-xs mt-2">
                 Don&apos;t have an account yet? No problem!{" "}
                 <a className="text-blue-700" href="#">
@@ -81,17 +82,6 @@ export default function Signin_admin({ onClose }) {
               <a href="#" className="font-light text-xs mt-1 text-blue-700">
                 Forgotten Password
               </a>
-              <div className=" relative w-full h-0 border border-gray-300 border-opacity-60 transform -rotate-0.5 mt-10">
-                <div className="relative flex justify-center">
-                  <div className="absolute bg-white p-2 -top-5">Or</div>
-                </div>
-              </div>
-              <div className="flex justify-center cursor-pointer hover:bg-neutral-100 items-center px-4 py-1 border rounded-xl mx-auto mt-9 gap-2 md:mb-6 lg:mb-0">
-                <div>
-                  <Image src={googlelogo} alt="Google Logo Image" />
-                </div>
-                <div className="text-md">Log in with Google</div>
-              </div>
             </div>
           </div>
         </div>

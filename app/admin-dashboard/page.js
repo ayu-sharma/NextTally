@@ -1,74 +1,113 @@
-"use client"
-import React, {useState} from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import logol from "../../public/images/logol.svg";
+import {
+  HandCoins,
+  LayoutDashboard,
+  GitBranch,
+  Settings,
+  HandHelping,
+  LogOut,
+} from "lucide-react";
+import { useRouter } from "next/navigation";
+import AdminDashboardCmp from "../../components/ui/Admindashboardcmp";
+export default function AdminDashboard() {
+  const [isSelectedOption, setIsSelectedOption] = useState(() => {
+    return localStorage.getItem("selectedOption") || "Dashboard";
+  });
 
-export default function adminDashboard() {
-    const [isSelectedOption, setIsSelectedOption] = useState()
+  const router = useRouter();
+
+  useEffect(() => {
+    localStorage.setItem("selectedOption", isSelectedOption);
+  }, [isSelectedOption]);
+
+  const handleClick = (id) => {
+    setIsSelectedOption(id);
+  };
+
+  const handlelogout = () => {
+    localStorage.removeItem("selectedOption");
+    router.push("/");
+  };
+
   return (
-    <>
-      <div className="home-navbar-color h-screen w-full max-w-xs">
-        <div className={`py-4`}>
+    <div className="flex w-screen h-screen overflow-hidden">
+      <div className="home-navbar-color min-h-screen w-[16rem] flex flex-col justify-between fixed">
+        <div>
           <Image
-            className="pl-6"
+            className="my-1 mt-3 mx-4 py-1"
             src={logol}
             alt="NextTally Logo"
-            height={38}
+            height={35}
           />
-          <div className="flex flex-col mt-10 gap-2">
-            <div className={`flex flex-row items-center gap-3 cursor-pointer px-6 py-2`}>
-              <Image
-                className="bg-white p-2 rounded-md"
-                src={{}}
-                alt="Signup Logo"
-                height={5}
-                width={5}
-              />
-              <h1 className="">Dashboard</h1>
-            </div>
-            <div className={`flex flex-row items-center gap-3 cursor-pointer px-6 py-2`}>
-              <Image
-                className="bg-white p-2 rounded-md"
-                src={{}}
-                alt="Signup Logo"
-                height={10}
-                width={10}
-              />
-              <h1 className="">Tax Calculation</h1>
-            </div>
-            <div className={`flex flex-row items-center gap-3 cursor-pointer px-6 py-2`}>
-              <Image
-                className="bg-white p-2 rounded-md"
-                src={{}}
-                alt="Signup Logo"
-                height={10}
-                width={10}
-              />
-              <h1 className="">Branch Details</h1>
-            </div>
-            <div className={`flex flex-row items-center gap-3 cursor-pointer px-6 py-2`}>
-              <Image
-                className="bg-white p-2 rounded-md"
-                src={{}}
-                alt="Signup Logo"
-                height={10}
-                width={10}
-              />
-              <h1 className="">Settings</h1>
-            </div>
-            <div className={`flex flex-row items-center gap-3 cursor-pointer px-6 py-2`}>
-              <Image
-                className="bg-white p-2 rounded-md"
-                src={{}}
-                alt="Signup Logo"
-                height={10}
-                width={10}
-              />
-              <h1 className="">Help Center</h1>
-            </div>
+          <div className="text-xs text-[#8B8686] my-1 mx-4 py-1">
+            {isSelectedOption}
+          </div>
+          <div className="flex flex-col gap-4 mt-6">
+            {[
+              {
+                id: "Dashboard",
+                icon: <LayoutDashboard />,
+                label: "Dashboard",
+              },
+              {
+                id: "Tax Calculation",
+                icon: <HandCoins />,
+                label: "Tax Calculation",
+              },
+              {
+                id: "Branch Details",
+                icon: <GitBranch />,
+                label: "Branch Details",
+              },
+              { id: "Settings", 
+                icon: <Settings />, 
+                label: "Settings" 
+              },
+              {
+                id: "Help Center",
+                icon: <HandHelping />,
+                label: "Help Center",
+              },
+            ].map((item) => (
+              <div
+                key={item.id}
+                onClick={() => handleClick(item.id)}
+                className={`flex items-center gap-3 cursor-pointer rounded-lg mx-4 my-1 py-2 px-6 ${
+                  isSelectedOption === item.id
+                    ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] text-white"
+                    : ""
+                }`}
+              >
+                <div
+                  className={`p-1 rounded-md ${
+                    isSelectedOption === item.id
+                      ? "bg-[#EDF3F5] text-[#185FF6]"
+                      : "bg-white"
+                  }`}
+                >
+                  {item.icon}
+                </div>
+                <h1>{item.label}</h1>
+              </div>
+            ))}
           </div>
         </div>
+        <div
+          onClick={handlelogout}
+          className="flex items-center gap-3 cursor-pointer rounded-lg mx-4 my-1 mb-3 py-1 px-6 bg-black hover:bg-[#212121]"
+        >
+          <div className="bg-white p-1 rounded-md">
+            <LogOut />
+          </div>
+          <h1 className="text-white font-bold py-2">Logout</h1>
+        </div>
       </div>
-    </>
+      <div className="flex-grow h-full overflow-y-auto ml-[16rem] px-4">
+        <AdminDashboardCmp />
+      </div>
+    </div>
   );
 }

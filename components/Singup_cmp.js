@@ -48,7 +48,7 @@ export default function Signup_cmp({ renderPage }) {
             onClick={() => handleClick()}
           />
         </div>
-        <div className=" relative w-full h-0 border border-gray-300 border-opacity-60 transform -rotate-0.5 mt-10">
+        {/* <div className=" relative w-full h-0 border border-gray-300 border-opacity-60 transform -rotate-0.5 mt-10">
           <div className="relative flex justify-center">
             <div className="absolute bg-[#E1E9EF] p-2 -top-5">Or</div>
           </div>
@@ -58,7 +58,7 @@ export default function Signup_cmp({ renderPage }) {
             <Image src={googlelogo} alt="Google Logo Image" />
           </div>
           <div className="text-sm">Log in with Google</div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
