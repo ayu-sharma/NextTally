@@ -12,16 +12,32 @@ import {
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import AdminDashboardCmp from "../../components/ui/Admindashboardcmp";
-export default function AdminDashboard() {
-  const [isSelectedOption, setIsSelectedOption] = useState(() => {
-    return localStorage.getItem("selectedOption") || "Dashboard";
-  });
+import TaxCalc from "../../components/ui/TaxCalc";
 
+export default function AdminDashboard() {
+  const [isSelectedOption, setIsSelectedOption] = useState(null);
+  const [isClient, setIsClient] = useState(false); // Flag to check if client-side
   const router = useRouter();
 
   useEffect(() => {
-    localStorage.setItem("selectedOption", isSelectedOption);
-  }, [isSelectedOption]);
+    setIsClient(true); // Set to true on client-side mount
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      // Only run if client-side
+      const storedOption = localStorage.getItem("selectedOption");
+      if (storedOption) {
+        setIsSelectedOption(storedOption);
+      }
+    }
+  }, [isClient]);
+
+  useEffect(() => {
+    if (isClient) {
+      localStorage.setItem("selectedOption", isSelectedOption);
+    }
+  }, [isSelectedOption, isClient]);
 
   const handleClick = (id) => {
     setIsSelectedOption(id);
@@ -31,6 +47,19 @@ export default function AdminDashboard() {
     localStorage.removeItem("selectedOption");
     router.push("/");
   };
+
+  const renderElement = () => {
+    switch (isSelectedOption) {
+      case "Dashboard":
+        return <AdminDashboardCmp />;
+      case "Tax Calculation":
+        return <TaxCalc />;
+      default:
+        return null;
+    }
+  };
+
+  if (!isClient) return null; 
 
   return (
     <div className="flex w-screen h-screen overflow-hidden">
@@ -62,9 +91,10 @@ export default function AdminDashboard() {
                 icon: <GitBranch />,
                 label: "Branch Details",
               },
-              { id: "Settings", 
-                icon: <Settings />, 
-                label: "Settings" 
+              {
+                id: "Settings",
+                icon: <Settings />,
+                label: "Settings",
               },
               {
                 id: "Help Center",
@@ -106,7 +136,7 @@ export default function AdminDashboard() {
         </div>
       </div>
       <div className="flex-grow h-full overflow-y-auto ml-[16rem] px-4">
-        <AdminDashboardCmp />
+        {renderElement()}
       </div>
     </div>
   );
