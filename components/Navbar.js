@@ -18,7 +18,7 @@ const Navbar = ({ menuItems }) => {
     <>
       <nav className="p-4">
         <div
-          className={`flex justify-between items-center md:py-8 py-4 px-4 md:px-9`}
+          className={`flex justify-between items-center md:pt-2 py-4 px-4 md:px-9`}
         >
           <div className="">
             <Image src={logol} alt="NextTally Logo" height={44} />
