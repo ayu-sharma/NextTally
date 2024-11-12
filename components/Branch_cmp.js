@@ -2,10 +2,14 @@ import React from "react";
 import Button from "../components/ui/ButtonCmp";
 import Image from "next/image";
 import googlelogo from "../public/images/googlelogo.svg";
-export default function Signup_cmp({ renderPage }) {
+export default function Signup_cmp({ renderPage, signupData, setSignupData }) {
   const handleClick = (e) => {
     renderPage();
   };
+  function handleInput(e) {
+    const { name, value } = e.target;
+    setSignupData({ ...signupData, [name]: value });
+  }
   return (
     <div>
       <div className="flex flex-col justify-center w-full md:pt-16 pt-16 md:pb-10 md:px-4 px-4 max-w-md mx-auto">
@@ -18,13 +22,19 @@ export default function Signup_cmp({ renderPage }) {
         <div className="pt-6 w-full flex flex-col">
           <input
             type="text"
+            id="branchname"
+            name="branchname"
             placeholder="Branch Name"
+            onChange={handleInput}
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
           />
 
           <input
             type="text"
+            name="branchlocation"
+            id="branchlocation"
             placeholder="Branch Location"
+            onChange={handleInput}
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
           />
         </div>

@@ -2,10 +2,14 @@ import React from "react";
 import Button from "../components/ui/ButtonCmp";
 import Image from "next/image";
 import googlelogo from "../public/images/googlelogo.svg";
-export default function Signup_cmp({ renderPage }) {
+export default function Signup_cmp({ renderPage, signupData, setSignupData }) {
   const handleClick = (e) => {
     renderPage();
   };
+  function handleInput(e) {
+    const {name, value} = e.target
+    setSignupData({...signupData, [name]: value});
+  }
 
   return (
     <div>
@@ -19,18 +23,27 @@ export default function Signup_cmp({ renderPage }) {
         <div className="pt-6 w-full flex flex-col">
           <input
             type="text"
+            name="adminname"
+            id="adminname"
             placeholder="Name"
+            onChange={handleInput}
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
           />
 
           <input
             type="email"
+            name="email"
+            id="email"
+            onChange={handleInput}
             placeholder="Email Address"
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
           />
 
           <input
             type="password"
+            name="password"
+            id="password"
+            onChange={handleInput}
             placeholder="Password"
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
           />

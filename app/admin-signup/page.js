@@ -11,7 +11,14 @@ export default function Signin_admin() {
   const [page, setPage] = useState(()=> {
     return parseInt(localStorage.getItem("selectedpage")) || 1;
   })
+  const [signupData, setSignupData] = useState({
+    adminname: "",
+    email: "",
+    password: "",
+    branchname: "",
+    branchlocation: "",
 
+  })
   useEffect(() => {
     localStorage.setItem("selectedpage", page);
   }, [page]);
@@ -96,9 +103,9 @@ export default function Signin_admin() {
               </div>
             </div>
             <div className="flex flex-col w-full md:px-4 px-4 max-w-md mx-auto">
-              {page === 1 && <Signup_cmp renderPage={renderPage} />}
-              {page === 2 && <Branch_cmp renderPage={renderPage} />}
-              {page === 3 && <Assign_mngr renderPage={renderPage} />}
+              {page === 1 && <Signup_cmp renderPage={renderPage} signupData = {signupData} setSignupData= {setSignupData}/>}
+              {page === 2 && <Branch_cmp renderPage={renderPage} signupData = {signupData} setSignupData= {setSignupData}/>}
+              {page === 3 && <Assign_mngr renderPage={renderPage} signupData = {signupData} setSignupData= {setSignupData}/>}
             </div>
           </div>
         </div>
