@@ -15,7 +15,7 @@ import AdminDashboardCmp from "../../components/ui/Admindashboardcmp";
 import TaxCalc from "../../components/ui/TaxCalc";
 
 export default function AdminDashboard() {
-  const [isSelectedOption, setIsSelectedOption] = useState(null);
+  const [isSelectedOption, setIsSelectedOption] = useState("Dashboard");
   const [isClient, setIsClient] = useState(false); // Flag to check if client-side
   const router = useRouter();
 
@@ -47,6 +47,12 @@ export default function AdminDashboard() {
     localStorage.removeItem("selectedOption");
     router.push("/");
   };
+  const date = new Date();
+  const formatDate = date.toLocaleDateString("en-US", {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
 
   const renderElement = () => {
     switch (isSelectedOption) {
@@ -136,7 +142,11 @@ export default function AdminDashboard() {
         </div>
       </div>
       <div className="flex-grow h-full overflow-y-auto ml-[16rem] px-4">
+        <div className="mt-3 w-full flex flex-col">
+      <div className="font-bold text-2xl">Hey, Admin</div>
+      <div className="text-xs text-[#959697]">{formatDate}</div>
         {renderElement()}
+        </div>
       </div>
     </div>
   );

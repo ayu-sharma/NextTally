@@ -27,7 +27,7 @@ export default function Slabpricing({ selected }) {
             <div className="bg-gray-400 rounded-2xl p-0.5 relative">
               <div className="bg-[#E1E9EF] p-8 rounded-[0.875rem] w-full h-full">
                 <div className="md:h-[7rem]">
-                  <h1>FREE</h1>
+                  <h1 className="antialiased font-semibold text-lg -tracking-[0.014em] box-decoration-clone">FREE</h1>
                 </div>
                 <button className="cursor-pointer border-black border font-inter text-sm md:text-base -tracking-[0.006em] md:-tracking-[0.011em] text-black font-medium antialiased rounded-lg py-2.5 px-6 md:px-8 flex items-center justify-center group mt-3 w-full hover:bg-black hover:text-white">
                   Get Started for Free
@@ -61,7 +61,7 @@ export default function Slabpricing({ selected }) {
             <div className="bg-gray-400 rounded-2xl p-0.5 relative">
               <div className="bg-[#E1E9EF] p-8 rounded-[0.875rem] w-full h-full">
                 <div className="md:h-[7rem]">
-                  <h1>FREE</h1>
+                  <h1 className="antialiased font-semibold text-lg -tracking-[0.014em] box-decoration-clone">FREE</h1>
                 </div>
                 <button className="cursor-pointer border-black border font-inter text-sm md:text-base -tracking-[0.006em] md:-tracking-[0.011em] text-black font-medium antialiased rounded-lg py-2.5 px-6 md:px-8 flex items-center justify-center group mt-3 w-full hover:bg-black hover:text-white">
                   Get Started for Free
@@ -95,7 +95,7 @@ export default function Slabpricing({ selected }) {
             <div className="bg-gray-400 rounded-2xl p-0.5 relative">
               <div className="bg-[#E1E9EF] p-8 rounded-[0.875rem] w-full h-full">
                 <div className="md:h-[7rem]">
-                  <h1>FREE</h1>
+                  <h1 className="antialiased font-semibold text-lg -tracking-[0.014em] box-decoration-clone">FREE</h1>
                 </div>
                 <button className="cursor-pointer border-black border font-inter text-sm md:text-base -tracking-[0.006em] md:-tracking-[0.011em] text-black font-medium antialiased rounded-lg py-2.5 px-6 md:px-8 flex items-center justify-center group mt-3 w-full hover:bg-black hover:text-white">
                   Get Started for Free

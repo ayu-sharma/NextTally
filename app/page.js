@@ -67,14 +67,14 @@ export default function Home() {
             </button>
           </Link>
         </div>
-        <div className="flex flex-col items-center max-w-5xl mx-auto gap-32 mt-32">
+        <div className="flex flex-col items-center max-w-5xl md:mx-auto gap-32 mt-32">
           <motion.p
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.5 }} // 0.5 triggers at 50% of element in viewport
             variants={fadeVariants}
             transition={{ duration: 0.6 }}
-            className="font-[450] text-6xl leading-[1.1] antialiased text-primary -tracking-[0.022em] text-center"
+            className="font-[450] md:text-6xl text-xl leading-[1.1] antialiased text-primary -tracking-[0.022em] text-center"
           >
             NextTally: Your theater's financial assistant,{" "}
             <span className="website-color-scheme-text">
@@ -89,7 +89,7 @@ export default function Home() {
             viewport={{ once: false, amount: 0.5 }}
             variants={fadeVariants}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-[450] text-6xl leading-[1.1] antialiased text-primary -tracking-[0.022em] text-center"
+            className="font-[450] md:text-6xl text-xl leading-[1.1] antialiased text-primary -tracking-[0.022em] text-center"
           >
             Confident Theater Calculations
           </motion.p>
@@ -100,7 +100,7 @@ export default function Home() {
             viewport={{ once: false, amount: 0.5 }}
             variants={fadeVariants}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="font-[450] text-6xl leading-[1.1] antialiased text-primary -tracking-[0.022em] text-center"
+            className="font-[450] md:text-6xl text-xl leading-[1.1] antialiased text-primary -tracking-[0.022em] text-center"
           >
             Profit, Loss, Tax-handled in a click.
           </motion.p>
@@ -111,7 +111,7 @@ export default function Home() {
             viewport={{ once: false, amount: 0.5 }}
             variants={fadeVariants}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="font-inter font-[450] text-3xl md:text-5xl md:leading-[1.15] antialiased text-primary -tracking-[0.021em] md:-tracking-[0.022em] text-center"
+            className="font-inter font-[450] text-lg md:text-5xl md:leading-[1.15] antialiased text-primary -tracking-[0.021em] md:-tracking-[0.022em] text-center"
           >
             Maximize Theater Financial Clarity.
           </motion.p>

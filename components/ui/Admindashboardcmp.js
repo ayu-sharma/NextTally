@@ -5,18 +5,10 @@ import { Album } from "lucide-react";
 import { Percent } from "lucide-react";
 import { VenetianMask } from 'lucide-react';
 export default function adminDashboardCmp() {
-  const date = new Date();
-  const formatDate = date.toLocaleDateString("en-US", {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
   
   return (
     <>
-      <div className="mt-3 w-full flex flex-col">
-        <div className="font-bold text-2xl">Hey, Admin</div>
-        <div className="text-xs text-[#959697]">{formatDate}</div>
+      <div className="">
         <div className="mt-16 px-5 py-4 bg-[#f8f9f9] rounded-lg flex gap-2 items-center">
           <div className="rounded-full bg-[#EDF3F5] p-2 border-[.25px] border-[#8B8686]">
             <VenetianMask/>
@@ -27,7 +19,7 @@ export default function adminDashboardCmp() {
 </div>
         </div>
         
-        <div className="flex gap-5 w-full mt-12">
+        <div className="flex flex-wrap gap-5 w-full mt-12">
           {[
             {
               title: "Theaters",
@@ -52,7 +44,7 @@ export default function adminDashboardCmp() {
           ].map((items) => (
             <div
               key={items.id}
-              className="bg-[#f8f9f9] w-full max-w-xs px-4 rounded-xl py-5 pb-3"
+              className="bg-[#f8f9f9] w-full max-w-xs mx-auto px-7 rounded-xl py-5 pb-3"
             >
               <p className="pb-5">{items.title}</p>
               <div className="flex gap-3 items-center">
@@ -64,7 +56,7 @@ export default function adminDashboardCmp() {
             </div>
           ))}
         </div>
-        <div className="flex justify-evenly gap-6 w-full my-12">
+        <div className="flex justify-evenly flex-wrap gap-6 w-full my-12">
           <div className="flex flex-col justify-between gap-6 max-w-md rounded-lg bg-gradient-to-b from-[#F8F8F8] to-[#F4F8F7] w-full p-4">
             <div className="bg-white px-3 py-2 rounded-lg">hi</div>
             <div className="bg-white px-3 py-2 rounded-lg">hi</div>
