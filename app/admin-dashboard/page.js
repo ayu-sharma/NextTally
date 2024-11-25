@@ -1,7 +1,8 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import logol from "../../public/images/logol.svg";
+import { useRouter } from "next/navigation";
 import {
   HandCoins,
   LayoutDashboard,
@@ -10,65 +11,92 @@ import {
   HandHelping,
   LogOut,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
 import AdminDashboardCmp from "../../components/ui/Admindashboardcmp";
 import TaxCalc from "../../components/ui/TaxCalc";
+import logol from "../../public/images/logol.svg";
+
+const SidebarItem = ({ id, label, icon, isSelected, onClick }) => (
+  <div
+    onClick={() => onClick(id)}
+    className={`flex items-center gap-3 cursor-pointer rounded-lg mx-4 my-1 py-2 px-6 ${
+      isSelected
+        ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] text-white"
+        : ""
+    }`}
+  >
+    <div
+      className={`p-1 rounded-md ${
+        isSelected ? "bg-[#EDF3F5] text-[#185FF6]" : "bg-white"
+      }`}
+    >
+      {icon}
+    </div>
+    <h1>{label}</h1>
+  </div>
+);
 
 export default function AdminDashboard() {
-  const [isSelectedOption, setIsSelectedOption] = useState("Dashboard");
-  const [isClient, setIsClient] = useState(false); // Flag to check if client-side
+  const [selectedOption, setSelectedOption] = useState("Dashboard");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
-    setIsClient(true); // Set to true on client-side mount
+    const storedOption = localStorage.getItem("selectedOption");
+    if (storedOption) {
+      setSelectedOption(storedOption);
+    }
   }, []);
 
   useEffect(() => {
-    if (isClient) {
-      // Only run if client-side
-      const storedOption = localStorage.getItem("selectedOption");
-      if (storedOption) {
-        setIsSelectedOption(storedOption);
-      }
+    const authToken = localStorage.getItem("authToken");
+    if (!authToken) {
+      router.push("/adminLogin");
+    } else {
+      setIsAuthenticated(true); 
     }
-  }, [isClient]);
+    setIsCheckingAuth(false); 
+  }, [router]);
 
   useEffect(() => {
-    if (isClient) {
-      localStorage.setItem("selectedOption", isSelectedOption);
-    }
-  }, [isSelectedOption, isClient]);
+    localStorage.setItem("selectedOption", selectedOption);
+  }, [selectedOption]);
 
-  const handleClick = (id) => {
-    setIsSelectedOption(id);
-  };
-
-  const handlelogout = () => {
-    localStorage.removeItem("selectedOption");
+  const handleLogout = () => {
+    localStorage.clear();
     router.push("/");
   };
-  const date = new Date();
-  const formatDate = date.toLocaleDateString("en-US", {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
+  if (isCheckingAuth) return null;
+  if (!isAuthenticated) return null;
 
-  const renderElement = () => {
-    switch (isSelectedOption) {
+  const renderContent = () => {
+    switch (selectedOption) {
       case "Dashboard":
         return <AdminDashboardCmp />;
       case "Tax Calculation":
         return <TaxCalc />;
       default:
-        return null;
+        return <div>Select an option from the sidebar</div>;
     }
   };
 
-  if (!isClient) return null; 
+  const date = new Date().toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+
+  const sidebarItems = [
+    { id: "Dashboard", label: "Dashboard", icon: <LayoutDashboard /> },
+    { id: "Tax Calculation", label: "Tax Calculation", icon: <HandCoins /> },
+    { id: "Branch Details", label: "Branch Details", icon: <GitBranch /> },
+    { id: "Settings", label: "Settings", icon: <Settings /> },
+    { id: "Help Center", label: "Help Center", icon: <HandHelping /> },
+  ];
 
   return (
     <div className="flex w-screen h-screen overflow-hidden">
+      {/* Sidebar */}
       <div className="home-navbar-color min-h-screen w-[16rem] flex flex-col justify-between fixed">
         <div>
           <Image
@@ -78,61 +106,23 @@ export default function AdminDashboard() {
             height={35}
           />
           <div className="text-xs text-[#8B8686] my-1 mx-4 py-1">
-            {isSelectedOption}
+            {selectedOption}
           </div>
           <div className="flex flex-col gap-4 mt-6">
-            {[
-              {
-                id: "Dashboard",
-                icon: <LayoutDashboard />,
-                label: "Dashboard",
-              },
-              {
-                id: "Tax Calculation",
-                icon: <HandCoins />,
-                label: "Tax Calculation",
-              },
-              {
-                id: "Branch Details",
-                icon: <GitBranch />,
-                label: "Branch Details",
-              },
-              {
-                id: "Settings",
-                icon: <Settings />,
-                label: "Settings",
-              },
-              {
-                id: "Help Center",
-                icon: <HandHelping />,
-                label: "Help Center",
-              },
-            ].map((item) => (
-              <div
+            {sidebarItems.map((item) => (
+              <SidebarItem
                 key={item.id}
-                onClick={() => handleClick(item.id)}
-                className={`flex items-center gap-3 cursor-pointer rounded-lg mx-4 my-1 py-2 px-6 ${
-                  isSelectedOption === item.id
-                    ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] text-white"
-                    : ""
-                }`}
-              >
-                <div
-                  className={`p-1 rounded-md ${
-                    isSelectedOption === item.id
-                      ? "bg-[#EDF3F5] text-[#185FF6]"
-                      : "bg-white"
-                  }`}
-                >
-                  {item.icon}
-                </div>
-                <h1>{item.label}</h1>
-              </div>
+                id={item.id}
+                label={item.label}
+                icon={item.icon}
+                isSelected={selectedOption === item.id}
+                onClick={setSelectedOption}
+              />
             ))}
           </div>
         </div>
         <div
-          onClick={handlelogout}
+          onClick={handleLogout}
           className="flex items-center gap-3 cursor-pointer rounded-lg mx-4 my-1 mb-3 py-1 px-6 bg-black hover:bg-[#212121]"
         >
           <div className="bg-white p-1 rounded-md">
@@ -141,11 +131,13 @@ export default function AdminDashboard() {
           <h1 className="text-white font-bold py-2">Logout</h1>
         </div>
       </div>
+
+      {/* Main Content */}
       <div className="flex-grow h-full overflow-y-auto ml-[16rem] px-4">
         <div className="mt-3 w-full flex flex-col">
-      <div className="font-bold text-2xl">Hey, Admin</div>
-      <div className="text-xs text-[#959697]">{formatDate}</div>
-        {renderElement()}
+          <div className="font-bold text-2xl">Hey, Admin</div>
+          <div className="text-xs text-[#959697]">{date}</div>
+          <div className="mt-4">{renderContent()}</div>
         </div>
       </div>
     </div>

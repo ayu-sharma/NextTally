@@ -1,63 +1,97 @@
 "use client";
+
 import React, { useState, useEffect } from "react";
 import Signup_cmp from "../../components/Singup_cmp";
-import logol from "../../public/images/logol.svg";
-import Image from "next/image";
-import signuplogo from "../../public/images/signup_logo.svg";
 import Branch_cmp from "../../components/Branch_cmp";
 import Assign_mngr from "../../components/Assign_mngr";
+import Image from "next/image";
+import logol from "../../public/images/logol.svg";
+import signuplogo from "../../public/images/signup_logo.svg";
+import adminSignup from "../api/authenticateadminapi";
 
-export default function Signin_admin() {
+export default function SignupAdmin() {
   const [page, setPage] = useState(1);
-  const [isClient, setIsClient] = useState(false);
   const [signupData, setSignupData] = useState({
-    adminname: "",
-    email: "",
-    password: "",
-    branchname: "",
-    branchlocation: "",
+    adminName: "",
+    adminEmail: "",
+    adminPassword: "",
+    branchName: "",
+    branchLocation: "",
+    managerName: "",
+    managerEmail: "",
+    managerPassword: "",
   });
 
-
+  // Persist page state in localStorage
   useEffect(() => {
-    setIsClient(true);
+    const savedPage = localStorage.getItem("selectedPage");
+    if (savedPage) {
+      setPage(parseInt(savedPage, 10));
+    }
+    const handlePopState = () => localStorage.removeItem("selectedPage");
+    window.addEventListener("popstate", handlePopState);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+    };
   }, []);
 
   useEffect(() => {
-    if (isClient) {
-      const selectedPage = localStorage.getItem("selectedPage");
-      if (selectedPage) {
-        setPage(parseInt(selectedPage, 10));
+    localStorage.setItem("selectedPage", page);
+  }, [page]);
+
+  const addSignupDetails = async () => {
+    try {
+      const response = await adminSignup(signupData);
+      if (!response.error) {
+        console.log("Signup successful");
+        localStorage.setItem("authToken", response.token);
+        localStorage.setItem("adminName", response.admin.name);
+        resetSignupFlow();
+      } else {
+        console.error("Signup failed", response.message);
       }
+    } catch (err) {
+      console.error("Error during signup:", err);
     }
-  }, [isClient]);
-
-  useEffect(() => {
-    if (isClient) {
-      localStorage.setItem("selectedPage", page);
-    }
-  }, [page, isClient]);
-
-  const resetLocalStorage = () => {
-    localStorage.removeItem("selectedPage");
   };
 
+  const resetSignupFlow = () => {
+    localStorage.removeItem("selectedPage");
+    setPage(1);
+  };
 
   const renderPage = () => {
-    if (page < 3) {
-      setPage((prevPage) => prevPage + 1);
-    } else {
-      resetLocalStorage();
-      setPage(1);
-    }
+    setPage((prev) => (prev < 3 ? prev + 1 : 1));
   };
 
-  if (!isClient) return null; 
+  const isActive = (currentPage) =>
+    page === currentPage
+      ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] text-white"
+      : "";
+
+  const SidebarItem = ({ label, currentPage }) => (
+    <div
+      className={`flex flex-row items-center gap-3 cursor-pointer rounded-lg mx-4 my-2 py-2 px-6 ${isActive(
+        currentPage
+      )}`}
+    >
+      <Image
+        className="bg-white p-2 rounded-md"
+        src={signuplogo}
+        alt={`${label} Logo`}
+        height={30}
+        width={30}
+      />
+      <h1>{label}</h1>
+    </div>
+  );
 
   return (
     <div className="w-full overflow-y-auto">
       <div className="flex flex-col w-full">
         <div className="flex-1 flex items-center flex-row w-full">
+          {/* Sidebar */}
           <div className="home-navbar-color h-screen w-full max-w-[16rem]">
             <div className="py-4">
               <Image
@@ -67,57 +101,14 @@ export default function Signin_admin() {
                 height={38}
               />
               <div className="flex flex-col mt-10 gap-3">
-                <div
-                  className={`flex flex-row items-center gap-3 cursor-pointer rounded-lg mx-4 my-2 py-2 px-6 ${
-                    page === 1
-                      ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] text-white"
-                      : ""
-                  }`}
-                >
-                  <Image
-                    className="bg-white p-2 rounded-md"
-                    src={signuplogo}
-                    alt="Signup Logo"
-                    height={30}
-                    width={30}
-                  />
-                  <h1>Admin Signup</h1>
-                </div>
-                <div
-                  className={`flex flex-row items-center gap-3 cursor-pointer rounded-lg mx-4 my-2 py-2 px-6 ${
-                    page === 2
-                      ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] text-white"
-                      : ""
-                  }`}
-                >
-                  <Image
-                    className="bg-white p-2 rounded-md"
-                    src={signuplogo}
-                    alt="Signup Logo"
-                    height={30}
-                    width={30}
-                  />
-                  <h1>Branch Details</h1>
-                </div>
-                <div
-                  className={`flex flex-row items-center gap-3 cursor-pointer rounded-lg mx-4 my-2 py-2 px-6 ${
-                    page === 3
-                      ? "bg-gradient-to-b from-[#185FF6] to-[#1B45A6] text-white"
-                      : ""
-                  }`}
-                >
-                  <Image
-                    className="bg-white p-2 rounded-md"
-                    src={signuplogo}
-                    alt="Signup Logo"
-                    height={30}
-                    width={30}
-                  />
-                  <h1>Assign Manager</h1>
-                </div>
+                <SidebarItem label="Admin Signup" currentPage={1} />
+                <SidebarItem label="Branch Details" currentPage={2} />
+                <SidebarItem label="Assign Manager" currentPage={3} />
               </div>
             </div>
           </div>
+
+          {/* Page Content */}
           <div className="flex flex-col w-full md:px-4 px-4 max-w-md mx-auto">
             {page === 1 && (
               <Signup_cmp
@@ -138,6 +129,7 @@ export default function Signin_admin() {
                 renderPage={renderPage}
                 signupData={signupData}
                 setSignupData={setSignupData}
+                addSignupDetails={addSignupDetails}
               />
             )}
           </div>

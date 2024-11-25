@@ -1,8 +1,8 @@
+
 import localFont from "next/font/local";
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import { Montserrat } from "next/font/google";
-
 // Import custom fonts
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

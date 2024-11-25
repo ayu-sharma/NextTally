@@ -23,8 +23,8 @@ export default function Signup_cmp({ renderPage, signupData, setSignupData }) {
         <div className="pt-6 w-full flex flex-col">
           <input
             type="text"
-            name="adminname"
-            id="adminname"
+            name="adminName"
+            id="adminName"
             placeholder="Name"
             onChange={handleInput}
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
@@ -32,8 +32,8 @@ export default function Signup_cmp({ renderPage, signupData, setSignupData }) {
 
           <input
             type="email"
-            name="email"
-            id="email"
+            name="adminEmail"
+            id="adminEmail"
             onChange={handleInput}
             placeholder="Email Address"
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
@@ -41,8 +41,8 @@ export default function Signup_cmp({ renderPage, signupData, setSignupData }) {
 
           <input
             type="password"
-            name="password"
-            id="password"
+            name="adminPassword"
+            id="adminPassword"
             onChange={handleInput}
             placeholder="Password"
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"

@@ -22,8 +22,8 @@ export default function Signup_cmp({ renderPage, signupData, setSignupData }) {
         <div className="pt-6 w-full flex flex-col">
           <input
             type="text"
-            id="branchname"
-            name="branchname"
+            id="branchName"
+            name="branchName"
             placeholder="Branch Name"
             onChange={handleInput}
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
@@ -31,8 +31,8 @@ export default function Signup_cmp({ renderPage, signupData, setSignupData }) {
 
           <input
             type="text"
-            name="branchlocation"
-            id="branchlocation"
+            name="branchLocation"
+            id="branchLocation"
             placeholder="Branch Location"
             onChange={handleInput}
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
