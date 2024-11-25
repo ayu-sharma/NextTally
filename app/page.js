@@ -7,6 +7,7 @@ import logol from "../public/images/logol.svg";
 import HandleModals from "../components/HandleModals";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Testimonial from "../components/Testimonials"
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("");
@@ -116,6 +117,7 @@ export default function Home() {
           </motion.p>
         </div>
       </div>
+      <Testimonial/>
       {/* Fullscreen Overlay when SigninAdmin is open */}
       <HandleModals
         toggleComponent={toggleComponent}
