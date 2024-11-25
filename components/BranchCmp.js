@@ -1,8 +1,8 @@
 import React from "react";
-import Button from "../components/ui/ButtonCmp";
+import Button from "./ui/ButtonCmp";
 import Image from "next/image";
 import googlelogo from "../public/images/googlelogo.svg";
-export default function Signup_cmp({ renderPage, signupData, setSignupData }) {
+export default function BranchCmp({ renderPage, signupData, setSignupData }) {
   const handleClick = (e) => {
     renderPage();
   };

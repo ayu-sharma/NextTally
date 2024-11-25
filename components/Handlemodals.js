@@ -1,6 +1,5 @@
-import SigninAdmin from "./ui/Signin_admin";
-import SigninUser from "./ui/Signin_user";
-import SignupAdmin from "./ui/Signup_admin";
+import SigninAdmin from "./ui/SigninAdmin";
+import SigninUser from "./ui/SigninUser";
 import React, { useState } from "react";
 
 export default function HandleModals({

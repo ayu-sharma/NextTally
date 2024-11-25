@@ -3,7 +3,7 @@ import Button from "./ButtonCmp";
 import Image from "next/image";
 import close from "../../public/images/modalclose.svg";
 import { useRouter } from "next/navigation";
-export default function Signin_admin({
+export default function SigninUser({
   onClose,
   setIsScreenLarge,
   isScreenLarge,

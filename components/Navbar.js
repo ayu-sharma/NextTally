@@ -6,7 +6,7 @@ import logol from "../public/images/logol.svg";
 import Dropdownbtn from "../components/ui/Dropdownbtn";
 import { HiMenu, HiX } from "react-icons/hi";
 import modalclose from "../public/images/modalclose.svg";
-import CloseButton from "../components/ui/CloseButton";
+import CloseButton from "./ui/closeButton";
 const Navbar = ({menuItems}) => {
   const [isOpen, setIsOpen] = useState(false); // State to handle mobile menu visibility
 
@@ -34,7 +34,7 @@ const Navbar = ({menuItems}) => {
             <Link href="/howitworks">
               <div className="text-black font-monospace">How it Works</div>
             </Link>
-            <Link href="/pricing">
+            <Link href="/Pricing">
               <div className="text-black font-monospace">Pricing</div>
             </Link>
           </div>

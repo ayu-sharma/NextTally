@@ -1,9 +1,9 @@
 import React from "react";
-import Button from "../components/ui/ButtonCmp";
+import Button from "./ui/ButtonCmp";
 import Image from "next/image";
 import googlelogo from "../public/images/googlelogo.svg";
 import Link from "next/link";
-export default function Signup_cmp({ renderPage,signupData, setSignupData, addSignupDetails }) {
+export default function AssignMngr({ renderPage,signupData, setSignupData, addSignupDetails }) {
   const handleClick = (e) => {
     renderPage();
     addSignupDetails()

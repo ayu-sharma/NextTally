@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import logol from "../public/images/logol.svg";
-import HandleModals from "../components/handlemodals";
+import HandleModals from "../components/HandleModals";
 import Link from "next/link";
 import { motion } from "framer-motion";
 export default function Home() {
@@ -60,7 +60,7 @@ export default function Home() {
               locations.
             </h2>
           </div>
-          <Link href="/admin-signup">
+          <Link href="/AdminSignup">
             <button className="rounded-lg text-lg py-2 px-6 text-white font-bold hover:opacity-90 bg-black hover:bg-gray-900 flex items-center mx-auto">
               Get Started
             </button>

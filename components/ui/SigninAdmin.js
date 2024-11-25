@@ -5,7 +5,7 @@ import close from "../../public/images/modalclose.svg";
 import { useRouter } from "next/navigation";
 import { adminLogin } from "../../app/api/authenticateadminapi";
 
-export default function Signin_admin({ onClose }) {
+export default function SigninAdmin({ onClose }) {
   const [details, setDetails] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -34,7 +34,7 @@ export default function Signin_admin({ onClose }) {
       console.log("tihs is this", response.success)
       if (response.success) {
         localStorage.setItem("authToken", response.token);
-        await router.push("/admin-dashboard");
+        await router.push("/AdminDashboard");
         onClose();
       } else {
         setError("Invalid credentials");

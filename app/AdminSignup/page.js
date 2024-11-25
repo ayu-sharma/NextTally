@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Signup_cmp from "../../components/Singup_cmp";
-import Branch_cmp from "../../components/Branch_cmp";
-import Assign_mngr from "../../components/Assign_mngr";
+import Signup_cmp from "../../components/SignupCmp";
+import Branch_cmp from "../../components/BranchCmp";
+import Assign_mngr from "../../components/AssignMngr";
 import Image from "next/image";
 import logol from "../../public/images/logol.svg";
 import signuplogo from "../../public/images/signup_logo.svg";

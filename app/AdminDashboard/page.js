@@ -11,7 +11,7 @@ import {
   HandHelping,
   LogOut,
 } from "lucide-react";
-import AdminDashboardCmp from "../../components/ui/Admindashboardcmp";
+import AdminDashboardCmp from "../../components/ui/AdminDashboardCmp";
 import TaxCalc from "../../components/ui/TaxCalc";
 import logol from "../../public/images/logol.svg";
 
@@ -51,7 +51,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
-      router.push("/adminLogin");
+      router.push("/AdminLogin");
     } else {
       setIsAuthenticated(true); 
     }
