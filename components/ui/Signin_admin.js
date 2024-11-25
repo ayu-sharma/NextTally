@@ -14,24 +14,34 @@ export default function Signin_admin({ onClose }) {
   const handleInput = (e) => {
     const { name, value } = e.target;
     setDetails({ ...details, [name]: value });
+    if (error) setError("");
   };
 
   const handleLogin = async () => {
-    setError("");
-    setLoading(true);
+    if (!details.email || !details.password) {
+      setError("Email and password are required.");
+      return;
+    }
+    if (!/\S+@\S+\.\S+/.test(details.email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    
+    setError(""); 
+    setLoading(true); 
     try {
       const response = await adminLogin(details);
-      console.log(response);
-      if (!error.success) {
-        console.log("Logged In Successfully", response);
+      console.log("tihs is this", response.success)
+      if (response.success) {
+        localStorage.setItem("authToken", response.token);
+        await router.push("/admin-dashboard");
         onClose();
-        router.push("/admin-dashboard");
       } else {
-        setError(response.message || "Invalid credentials");
+        setError("Invalid credentials");
       }
     } catch (err) {
-      setError("Something went wrong. Please try again.");
-      console.error(err);
+      console.error("Login Error:", err);
+      setError("Something went wrong. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -42,25 +52,32 @@ export default function Signin_admin({ onClose }) {
       <div
         className="absolute top-4 right-4 md:top-4 md:right-4 p-2 cursor-pointer hover:bg-neutral-100 rounded-lg z-10 bg-white"
         onClick={onClose}
+        aria-label="Close Sign-In Modal"
       >
-        <Image src={close} alt="Admin Signin Button" />
+        <Image src={close} alt="Close" />
       </div>
+
+
       <div className="w-full overflow-y-auto">
         <div className="flex flex-col w-full">
           <div className="flex-1 items-start flex flex-row w-full">
+
             <div className="bg-gradient-to-b from-[#185FF6] to-[#1B45A6] h-[33rem] max-w-xl w-full flex flex-col pt-20 pl-10">
               <div className="text-white font-bold text-2xl">
                 The Simplest way to manage <br /> your revenue
               </div>
             </div>
+
+
             <div className="flex flex-col justify-center w-full lg:pt-24 pt-16 lg:px-20 px-10">
-              <div className="font-inter font-medium text-2xl md:text-[2rem] leading-[1.2] antialiased text-primary -tracking-[0.019em] md:-tracking-[0.021em] ">
+              <div className="font-inter font-medium text-2xl md:text-[2rem] leading-[1.2] antialiased text-primary">
                 Access Your Dashboard
               </div>
               <div className="text-black text-xs">
                 Enter your credentials to access your account
               </div>
               <div className="pt-6 w-full flex flex-col">
+
                 <input
                   type="email"
                   id="email"
@@ -68,8 +85,10 @@ export default function Signin_admin({ onClose }) {
                   onChange={handleInput}
                   value={details.email}
                   placeholder="Email Address.."
-                  className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
+                  className="w-full px-6 rounded-lg text-primary font-normal py-3 border border-slate-300 focus:border-blue-400 focus:ring-1 focus:ring-blue-400 mb-4 placeholder-gray-400"
+                  aria-label="Email Address"
                 />
+
 
                 <input
                   type="password"
@@ -78,16 +97,23 @@ export default function Signin_admin({ onClose }) {
                   onChange={handleInput}
                   value={details.password}
                   placeholder="Password"
-                  className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
+                  className="w-full px-6 rounded-lg text-primary font-normal py-3 border border-slate-300 focus:border-blue-400 focus:ring-1 focus:ring-blue-400 mb-1 placeholder-gray-400"
+                  aria-label="Password"
                 />
               </div>
-              {error && <div className="text-red-500 text-sm">{error}</div>}
+              <div className="h-6">
+              {error && <div className="text-red-500 text-xs">{error}</div>}
+              </div>
+
               <Button
                 onClick={handleLogin}
                 disabled={loading}
-                className="cursor-pointer studio-primary-gradient font-inter text-sm md:text-base -tracking-[0.006em] md:-tracking-[0.011em] text-white font-medium antialiased rounded-lg py-2.5 px-6 md:px-8 flex items-center justify-center group w-full"
+                className="studio-primary-gradient text-white font-medium rounded-lg py-2.5 px-6 md:px-8 flex items-center justify-center w-full"
                 btnName={loading ? "Logging in..." : "Login"}
+                aria-label="Login Button"
               />
+
+
               <div className="text-black font-light text-xs mt-2">
                 Don&apos;t have an account yet? No problem!{" "}
                 <a className="text-blue-700" href="/signup">

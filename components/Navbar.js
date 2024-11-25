@@ -7,12 +7,15 @@ import Dropdownbtn from "../components/ui/Dropdownbtn";
 import { HiMenu, HiX } from "react-icons/hi";
 import modalclose from "../public/images/modalclose.svg";
 import CloseButton from "../components/ui/CloseButton";
-const Navbar = ({ menuItems }) => {
+const Navbar = ({menuItems}) => {
   const [isOpen, setIsOpen] = useState(false); // State to handle mobile menu visibility
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  
+
+
 
   return (
     <>
@@ -28,7 +31,7 @@ const Navbar = ({ menuItems }) => {
             <Link href="/">
               <div className="text-black font-monospace">Home</div>
             </Link>
-            <Link href="/contact">
+            <Link href="/howitworks">
               <div className="text-black font-monospace">How it Works</div>
             </Link>
             <Link href="/pricing">

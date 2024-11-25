@@ -19,12 +19,11 @@ export default function Home() {
     setSelectedMenu(type);
     toggleComponent();
   };
-
   const menuItems = [
     { label: "For Admin", action: () => handleMenuClick("Admin") },
     { label: "For User", action: () => handleMenuClick("User") },
   ];
-
+ 
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("overflow-hidden");
@@ -41,7 +40,7 @@ export default function Home() {
   return (
     <div className=" flex flex-col justify-between ">
       <div className="">
-        <Navbar menuItems={menuItems} />
+        <Navbar menuItems={menuItems}/>
       </div>
 
       <div className="my-32 px-4">

@@ -35,7 +35,11 @@ export async function adminLogin(details) {
       password: details.password,
     });
 
-    return response.data;
+    return {
+      success: true,
+      token: response.data.token,
+      message: response.data.message || "Login successful",
+    };
   } catch (error) {
     console.error("Error during login:", error.message);
 
