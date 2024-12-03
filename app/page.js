@@ -8,6 +8,7 @@ import HandleModals from "../components/HandleModals";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Testimonial from "../components/Testimonials"
+import ReviewSection from "../components/ReviewSection"
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMenu, setSelectedMenu] = useState("");
@@ -39,7 +40,7 @@ export default function Home() {
   };
 
   return (
-    <div className=" flex flex-col justify-between ">
+    <div className=" flex flex-col justify-between overflow-hidden">
       <div className="">
         <Navbar menuItems={menuItems}/>
       </div>
@@ -118,6 +119,7 @@ export default function Home() {
         </div>
       </div>
       <Testimonial/>
+      <ReviewSection/>
       {/* Fullscreen Overlay when SigninAdmin is open */}
       <HandleModals
         toggleComponent={toggleComponent}

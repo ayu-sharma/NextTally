@@ -37,9 +37,11 @@ export default function Testimonial() {
         setCurrent((prev) => (prev === 0 ? Testimonialarray.length - 1 : prev - 1));
       };
     return (
-        <div className="container mx-auto lg:px-5 px-1 max-w-4xl">
-        <div className="flex justify-between items-center mb-4 h-[24rem]">
-          <button className="lg:text-3xl text-xs md:text-2xl" onClick={prevTestimonial}>
+      <>
+        <div className="container mx-auto lg:px-5 px-1">
+      <p className="font-inter font-[450] text-3xl md:text-4xl md:leading-[1.15] antialiased text-primary -tracking-[0.021em] md:-tracking-[0.022em] text-left max-w-3xl mx-auto w-full my-9">Stories of trust and success</p>
+        <div className="flex justify-between items-center h-[10rem] max-w-4xl mx-auto">
+          <button className="lg:text-3xl text-xs md:text-2xl sm:block hidden" onClick={prevTestimonial}>
             <ChevronLeft/>
           </button>
           <AnimatePresence mode="wait">
@@ -49,9 +51,8 @@ export default function Testimonial() {
               animate={{ opacity: 1, x: 0}}
               exit={{ opacity: 0, x:-10}}
               transition={{ duration: 0.3 }}
-              className="text-center"
             >
-              <div className="lg:max-w-2xl md:max-w-lg max-w-sm mx-auto">
+              <div className="lg:max-w-3xl md:max-w-2xl sm:max-w-xl mx-auto">
                 {/* <img
                   src="/Images/testimonial-img.svg"
                   alt="testimonial"
@@ -60,18 +61,21 @@ export default function Testimonial() {
                 <p className="leading-relaxed lg:text-lg text-xs md:text-sm">
                   {(Testimonialarray[current].comment)}
                 </p>
-                <span className="inline-block h-1 w-10 rounded bg-indigo-500 mt-8 mb-6"></span>
-                <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm">
-                  {(Testimonialarray[current].name)}
-                </h2>
-                <p className="text-gray-500">{(Testimonialarray[current].post)}</p>
               </div>
             </motion.div>
           </AnimatePresence>
-          <button className="lg:text-3xl text-xs md:text-2xl" onClick={nextTestimonial}>
+          <button className="lg:text-3xl text-xs md:text-2xl sm:block hidden" onClick={nextTestimonial}>
             <ChevronRight />
-          </button>
-        </div>
-      </div>
+            </button>
+            </div>
+          </div>
+                <div className="flex flex-col items-center mb-10">
+                <span className="inline-block h-1 w-10 rounded bg-indigo-500 mt-8 mb-6"></span>
+                <h2 className="text-gray-900 font-medium title-font tracking-wider text-sm text-center">
+                  {(Testimonialarray[current].name)}
+                </h2>
+                <p className="text-gray-500 text-center">{(Testimonialarray[current].post)}</p>
+              </div>
+      </>
     )
 }
