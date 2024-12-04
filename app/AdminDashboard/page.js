@@ -95,7 +95,7 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="flex w-screen h-screen overflow-hidden">
+    <div className="flex w-screen h-screen overflow-auto">
       {/* Sidebar */}
       <div className="home-navbar-color min-h-screen w-[16rem] flex flex-col justify-between fixed">
         <div>
@@ -133,7 +133,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-grow h-full overflow-y-auto ml-[16rem] px-4">
+      <div className="flex-grow h-full ml-[16rem] px-4">
         <div className="mt-3 w-full flex flex-col">
           <div className="font-bold text-2xl">Hey, Admin</div>
           <div className="text-xs text-[#959697]">{date}</div>

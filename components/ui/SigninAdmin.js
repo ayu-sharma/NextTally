@@ -102,7 +102,9 @@ export default function SigninAdmin({ onClose }) {
                   />
                   <span
                     onClick={togglePasswordVisibility}
-                    className={`absolute right-3 top-[25%] cursor-pointer translate-Y-[-50%] ${showPassword ? 'opacity-100' : "opacity-50"}`}
+                    className={`absolute right-3 top-[25%] cursor-pointer translate-Y-[-50%] ${
+                      showPassword ? "opacity-100" : "opacity-50"
+                    }`}
                   >
                     {showPassword ? <Eye /> : <EyeOff />}
                   </span>

@@ -22,7 +22,7 @@ export default function SignupAdmin() {
     managerPassword: "",
   });
 
-  // Persist page state in localStorage
+
   useEffect(() => {
     const savedPage = localStorage.getItem("selectedPage");
     if (savedPage) {
