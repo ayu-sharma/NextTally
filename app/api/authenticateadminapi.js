@@ -46,12 +46,33 @@ export async function adminLogin(details) {
     return {
       error: true,
       message: error.response
-       ? error.response.data.error
+        ? error.response.data.error
         : "Network error or server unavailable",
-      status: error.response? error.response.status : 500,
-      details: error.response? error.response.data.details || null : null,
+      status: error.response ? error.response.status : 500,
+      details: error.response ? error.response.data.details || null : null,
     };
   }
 }
 
-
+export async function dashboardDetails() {
+  try {
+    const token = localStorage.getItem("authToken");
+    const response = await axios.get("http://localhost:3003/admin/branch/all", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return {
+      success: true,
+      data: response.data,
+    };
+  } catch (err) {
+    console.error("Error fetching dashboard details:", err.message);
+    return {
+      error: true,
+      message: "Network error or server unavailable",
+      status: err.response ? err.response.status : 500,
+      details: err.response ? err.response.data.details || null : null,
+    };
+  }
+}

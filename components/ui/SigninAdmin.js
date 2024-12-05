@@ -8,9 +8,9 @@ import { EyeOff, Eye } from "lucide-react";
 
 export default function SigninAdmin({ onClose }) {
   const [details, setDetails] = useState({ email: "", password: "" });
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const togglePasswordVisibility = () => {
@@ -48,10 +48,13 @@ export default function SigninAdmin({ onClose }) {
       console.error("Login Error:", err);
       setError("Something went wrong. Please try again later.");
     } finally {
-      setLoading(false);
+
     }
   };
 
+
+  
+  isFinite();
   return (
     <>
       <div

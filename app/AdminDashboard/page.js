@@ -14,7 +14,7 @@ import {
 import AdminDashboardCmp from "../../components/ui/AdminDashboardCmp";
 import TaxCalc from "../../components/ui/TaxCalc";
 import logol from "../../public/images/logol.svg";
-
+import { HiX, HiMenu } from "react-icons/hi";
 const SidebarItem = ({ id, label, icon, isSelected, onClick }) => (
   <div
     onClick={() => onClick(id)}
@@ -24,11 +24,7 @@ const SidebarItem = ({ id, label, icon, isSelected, onClick }) => (
         : ""
     }`}
   >
-    <div
-      className={`p-1 rounded-md ${
-        isSelected ? "bg-[#EDF3F5] text-[#185FF6]" : "bg-white"
-      }`}
-    >
+    <div className={`p-1 rounded-md ${isSelected ? " text-white" : ""}`}>
       {icon}
     </div>
     <h1>{label}</h1>
@@ -39,6 +35,7 @@ export default function AdminDashboard() {
   const [selectedOption, setSelectedOption] = useState("Dashboard");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -48,14 +45,17 @@ export default function AdminDashboard() {
     }
   }, []);
 
+  const toggleButton = () => {
+    setIsOpen(!isOpen);
+  }
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
       router.push("/AdminLogin");
     } else {
-      setIsAuthenticated(true); 
+      setIsAuthenticated(true);
     }
-    setIsCheckingAuth(false); 
+    setIsCheckingAuth(false);
   }, [router]);
 
   useEffect(() => {
@@ -97,7 +97,15 @@ export default function AdminDashboard() {
   return (
     <div className="flex w-screen h-screen overflow-auto">
       {/* Sidebar */}
-      <div className="home-navbar-color min-h-screen w-[16rem] flex flex-col justify-between fixed">
+      <nav className='lg:hidden'>
+      <button
+              onClick={toggleButton}
+              className="focus:outline-none pt-7 pl-4"
+            >
+              { isOpen ? "" : <HiMenu size={30} />}
+            </button>
+    </nav>
+      <div className={`home-navbar-color min-h-screen w-[16rem] hidden lg:flex flex-col justify-between fixed`}>
         <div>
           <Image
             className="my-1 mt-3 mx-4 py-1"
@@ -105,9 +113,13 @@ export default function AdminDashboard() {
             alt="NextTally Logo"
             height={35}
           />
-          <div className="text-xs text-[#8B8686] my-1 mx-4 py-1">
+
+
+          {/* <div className="text-xs text-[#8B8686] my-1 mx-4 py-1">
             {selectedOption}
-          </div>
+          </div> */}
+
+
           <div className="flex flex-col gap-4 mt-6">
             {sidebarItems.map((item) => (
               <SidebarItem
@@ -123,20 +135,28 @@ export default function AdminDashboard() {
         </div>
         <div
           onClick={handleLogout}
-          className="flex items-center gap-3 cursor-pointer rounded-lg mx-4 my-1 mb-3 py-1 px-6 bg-black hover:bg-[#212121]"
+          className="flex items-center gap-3 cursor-pointer rounded-lg mx-4 my-1 mb-3 py-1 px-6 hover:bg-transparent bg-black border-black border hover:border-black hover:border hover:text-black text-white"
         >
-          <div className="bg-white p-1 rounded-md">
+          <div className=" p-1 rounded-md">
             <LogOut />
           </div>
-          <h1 className="text-white font-bold py-2">Logout</h1>
+          <h1 className=" font-bold py-2">Logout</h1>
         </div>
       </div>
 
       {/* Main Content */}
-      <div className="flex-grow h-full ml-[16rem] px-4">
+      <div className="flex-grow h-full lg:ml-[16rem] px-4">
         <div className="mt-3 w-full flex flex-col">
-          <div className="font-bold text-2xl">Hey, Admin</div>
+        <Image
+            className="my-1 mt-3 mx-10 py-1 lg:hidden relative"
+            src={logol}
+            alt="NextTally Logo"
+            height={35}
+          />
+        <div className="lg:block hidden">
+          <div className="font-bold text-2xl ">Hey, Admin</div>
           <div className="text-xs text-[#959697]">{date}</div>
+          </div>
           <div className="mt-4">{renderContent()}</div>
         </div>
       </div>
