@@ -1,15 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./ui/ButtonCmp";
-import Image from "next/image";
-import googlelogo from "../public/images/googlelogo.svg";
+
 export default function SignupCmp({ renderPage, signupData, setSignupData }) {
-  const handleClick = (e) => {
-    renderPage();
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleInputs = () => {
+    if (
+      !signupData.adminName ||
+      !signupData.adminEmail ||
+      !signupData.adminPassword
+    ) {
+      setErrorMessage("Please enter all required fields");
+      return false;
+    }
+
+    if (!/\S+@\S+\.\S+/.test(signupData.adminEmail)) {
+      setErrorMessage("Please enter a valid email address.");
+      return false;
+    }
+
+    setErrorMessage("");
+    return true;
   };
-  function handleInput(e) {
-    const {name, value} = e.target
-    setSignupData({...signupData, [name]: value});
-  }
+
+  const handleClick = () => {
+    if (handleInputs()) {
+      renderPage();
+    }
+  };
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setSignupData({ ...signupData, [name]: value });
+    setErrorMessage("")
+  };
 
   return (
     <div>
@@ -29,7 +53,6 @@ export default function SignupCmp({ renderPage, signupData, setSignupData }) {
             onChange={handleInput}
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
           />
-
           <input
             type="email"
             name="adminEmail"
@@ -38,7 +61,6 @@ export default function SignupCmp({ renderPage, signupData, setSignupData }) {
             placeholder="Email Address"
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
           />
-
           <input
             type="password"
             name="adminPassword"
@@ -47,31 +69,17 @@ export default function SignupCmp({ renderPage, signupData, setSignupData }) {
             placeholder="Password"
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
           />
-
-          {/* <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
-                /> */}
         </div>
         <div className="w-full">
           <Button
             className="cursor-pointer studio-primary-gradient font-inter text-sm md:text-base -tracking-[0.006em] md:-tracking-[0.011em] text-white font-medium antialiased rounded-lg py-2.5 px-6 md:px-8 flex items-center justify-center group w-full"
             btnName="Next"
-            onClick={() => handleClick()}
+            onClick={handleClick}
           />
+          {errorMessage && (
+            <div className="text-red-500 text-xs">{errorMessage}</div>
+          )}
         </div>
-        {/* <div className=" relative w-full h-0 border border-gray-300 border-opacity-60 transform -rotate-0.5 mt-10">
-          <div className="relative flex justify-center">
-            <div className="absolute bg-[#E1E9EF] p-2 -top-5">Or</div>
-          </div>
-        </div>
-        <div className="cursor-pointer flex items-center justify-center gap-3 border border-slate-300 hover:border-studio-gradient-start text-primary antialiased rounded-lg py-2.5 md:py-3 px-6 md:px-8 mt-9">
-          <div>
-            <Image src={googlelogo} alt="Google Logo Image" />
-          </div>
-          <div className="text-sm">Log in with Google</div>
-        </div> */}
       </div>
     </div>
   );

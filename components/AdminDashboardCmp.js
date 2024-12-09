@@ -4,31 +4,10 @@ import { Clapperboard } from "lucide-react";
 import { Album } from "lucide-react";
 import { Percent } from "lucide-react";
 import { VenetianMask } from "lucide-react";
-import { dashboardDetails } from "../../app/api/authenticateadminapi";
-import Spinner from "../ui/Spinner";
+import { dashboardDetails } from "../app/api/authenticateadminapi";
+import Spinner from "./ui/Spinner";
 export default function adminDashboardCmp() {
-  const [data, setData]  = useState([
-    {
-      title: "Theaters",
-      value: 0,
-      icon: <Theater />,
-    },
-    {
-      title: "Movies",
-      value: 0,
-      icon: <Clapperboard />,
-    },
-    {
-      title: "Bookings",
-      value: 0,
-      icon: <Album />,
-    },
-    {
-      title: "Revenue",
-      value: 0,
-      icon: <Percent />,
-    },
-  ])
+  const [data, setData]  = useState([])
   const [iseLoading, setIsLoading] = useState()
 
   useEffect(() => {

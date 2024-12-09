@@ -45,6 +45,9 @@ background: linear-gradient(180deg, #EDF3F5 42%, #F4F3EE 72.5%);
 .website-color-scheme {
   background: linear-gradient(to bottom, #185FF6, #1B45A6);
 }
+.website-color {
+  color: linear-gradient(to bottom, #185FF6, #1B45A6);
+} 
 .website-color-scheme-text {
     background: linear-gradient(to bottom, #185FF6, #1B45A6);
     -webkit-background-clip: text;

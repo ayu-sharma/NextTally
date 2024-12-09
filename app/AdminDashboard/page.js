@@ -10,11 +10,14 @@ import {
   Settings,
   HandHelping,
   LogOut,
+  Import,
 } from "lucide-react";
-import AdminDashboardCmp from "../../components/ui/AdminDashboardCmp";
+import AdminDashboardCmp from "../../components/AdminDashboardCmp";
 import TaxCalc from "../../components/ui/TaxCalc";
+import BranchDetails from "../../components/BranchDetails";
 import logol from "../../public/images/logol.svg";
 import { HiX, HiMenu } from "react-icons/hi";
+
 const SidebarItem = ({ id, label, icon, isSelected, onClick }) => (
   <div
     onClick={() => onClick(id)}
@@ -38,16 +41,10 @@ export default function AdminDashboard() {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    const storedOption = localStorage.getItem("selectedOption");
-    if (storedOption) {
-      setSelectedOption(storedOption);
-    }
-  }, []);
-
   const toggleButton = () => {
     setIsOpen(!isOpen);
-  }
+  };
+
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
     if (!authToken) {
@@ -58,14 +55,11 @@ export default function AdminDashboard() {
     setIsCheckingAuth(false);
   }, [router]);
 
-  useEffect(() => {
-    localStorage.setItem("selectedOption", selectedOption);
-  }, [selectedOption]);
-
   const handleLogout = () => {
     localStorage.clear();
     router.push("/");
   };
+
   if (isCheckingAuth) return null;
   if (!isAuthenticated) return null;
 
@@ -75,6 +69,8 @@ export default function AdminDashboard() {
         return <AdminDashboardCmp />;
       case "Tax Calculation":
         return <TaxCalc />;
+      case "Branch Details":
+        return <BranchDetails />;
       default:
         return <div>Select an option from the sidebar</div>;
     }
@@ -97,15 +93,14 @@ export default function AdminDashboard() {
   return (
     <div className="flex w-screen h-screen overflow-auto">
       {/* Sidebar */}
-      <nav className='lg:hidden'>
-      <button
-              onClick={toggleButton}
-              className="focus:outline-none pt-7 pl-4"
-            >
-              { isOpen ? "" : <HiMenu size={30} />}
-            </button>
-    </nav>
-      <div className={`home-navbar-color min-h-screen w-[16rem] hidden lg:flex flex-col justify-between fixed`}>
+      <nav className="lg:hidden">
+        <button onClick={toggleButton} className="focus:outline-none pt-7 pl-4">
+          {isOpen ? "" : <HiMenu size={30} />}
+        </button>
+      </nav>
+      <div
+        className={`home-navbar-color min-h-screen w-[16rem] hidden lg:flex flex-col justify-between fixed`}
+      >
         <div>
           <Image
             className="my-1 mt-3 mx-4 py-1"
@@ -113,13 +108,6 @@ export default function AdminDashboard() {
             alt="NextTally Logo"
             height={35}
           />
-
-
-          {/* <div className="text-xs text-[#8B8686] my-1 mx-4 py-1">
-            {selectedOption}
-          </div> */}
-
-
           <div className="flex flex-col gap-4 mt-6">
             {sidebarItems.map((item) => (
               <SidebarItem
@@ -147,15 +135,15 @@ export default function AdminDashboard() {
       {/* Main Content */}
       <div className="flex-grow h-full lg:ml-[16rem] px-4">
         <div className="mt-3 w-full flex flex-col">
-        <Image
+          <Image
             className="my-1 mt-3 mx-10 py-1 lg:hidden relative"
             src={logol}
             alt="NextTally Logo"
             height={35}
           />
-        <div className="lg:block hidden">
-          <div className="font-bold text-2xl ">Hey, Admin</div>
-          <div className="text-xs text-[#959697]">{date}</div>
+          <div className="lg:block hidden">
+            <div className="font-bold text-2xl ">Hey, Admin</div>
+            <div className="text-xs text-[#959697]">{date}</div>
           </div>
           <div className="mt-4">{renderContent()}</div>
         </div>
