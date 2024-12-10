@@ -6,9 +6,12 @@ import Branch_cmp from "../../components/BranchCmp";
 import Assign_mngr from "../../components/AssignMngr";
 import adminSignup from "../api/authenticateadminapi";
 import AdminSignupBar from "../../components/ui/AdminSignupBar";
+import { useRouter } from "next/navigation";
+import AuthSpinner from "../../components/ui/AuthSpinner";
 
 export default function SignupAdmin() {
   const [page, setPage] = useState(1);
+  const[isLoading, setIsLoading] = useState(false)
   const [signupData, setSignupData] = useState({
     adminName: "",
     adminEmail: "",
@@ -19,7 +22,9 @@ export default function SignupAdmin() {
     managerEmail: "",
     managerPassword: "",
   });
+  const router = useRouter();
   const addSignupDetails = async () => {
+    setIsLoading(true)
     try {
       const response = await adminSignup(signupData);
       if (!response.error) {
@@ -27,6 +32,8 @@ export default function SignupAdmin() {
         localStorage.setItem("authToken", response.token);
         localStorage.setItem("adminName", response.admin.name);
         resetSignupFlow();
+        setIsLoading(false);
+        router.push("/AdminDashboard");
       } else {
         console.error("Signup failed", response.message);
       }
@@ -41,6 +48,9 @@ export default function SignupAdmin() {
   const renderPage = () => {
     setPage((prev) => (prev < 3 ? prev + 1 : 1));
   };
+  if (isLoading) {
+    return <div><AuthSpinner/></div>;
+  }
   
   return (
     <div className="flex flex-col">

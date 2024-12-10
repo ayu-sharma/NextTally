@@ -1,10 +1,23 @@
-import React from "react";
+import {React, useState} from "react";
 import Button from "./ui/ButtonCmp";
 import Image from "next/image";
 import googlelogo from "../public/images/googlelogo.svg";
 export default function BranchCmp({ renderPage, signupData, setSignupData }) {
+
+  const [errorMessage, setErrorMessage] = useState("")
+  const handleInputs= () =>{
+    if(!signupData.branchName || !signupData.branchLocation) {
+      setErrorMessage("Enter all branch name")
+      return false
+    }
+    setErrorMessage("")
+    return true
+  }
+
   const handleClick = (e) => {
-    renderPage();
+    if (handleInputs()) {
+      renderPage();
+    }
   };
   function handleInput(e) {
     const { name, value } = e.target;
@@ -44,6 +57,9 @@ export default function BranchCmp({ renderPage, signupData, setSignupData }) {
             btnName="Next"
             onClick={handleClick}
           />
+          {errorMessage && (
+            <div className="text-red-500 text-xs">{errorMessage}</div>
+          )}
         </div>
       </div>
     </div>

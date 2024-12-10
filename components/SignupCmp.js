@@ -51,7 +51,7 @@ export default function SignupCmp({ renderPage, signupData, setSignupData }) {
             id="adminName"
             placeholder="Name"
             onChange={handleInput}
-            className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
+            className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300  mb-4 placeholder:font-[350]"
           />
           <input
             type="email"
@@ -59,7 +59,7 @@ export default function SignupCmp({ renderPage, signupData, setSignupData }) {
             id="adminEmail"
             onChange={handleInput}
             placeholder="Email Address"
-            className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
+            className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 mb-4 placeholder:font-[350]"
           />
           <input
             type="password"
@@ -67,7 +67,7 @@ export default function SignupCmp({ renderPage, signupData, setSignupData }) {
             id="adminPassword"
             onChange={handleInput}
             placeholder="Password"
-            className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
+            className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 mb-4 placeholder:font-[350]"
           />
         </div>
         <div className="w-full">

@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "./ui/ButtonCmp";
-import Image from "next/image";
-import googlelogo from "../public/images/googlelogo.svg";
-import Link from "next/link";
 export default function AssignMngr({ renderPage,signupData, setSignupData, addSignupDetails }) {
+  const [errorMessage, setErrorMessage] = useState("")
+
+  const validateForm = () => {
+    if (
+      signupData.managerName === "" ||
+      signupData.managerEmail === "" ||
+      signupData.managerPassword === ""
+    ) {
+      setErrorMessage("All fields are required");
+      return false;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(signupData.managerEmail)) {
+      setErrorMessage("Invalid email address");
+      return false;
+    }
+    if (signupData.managerPassword.length < 8) {
+      setErrorMessage("Password must be at least 8 characters long");
+      return false;
+    }
+    setErrorMessage("");
+    
+    return true;
+  }
   const handleClick = (e) => {
+    if(validateForm()){
     renderPage();
     addSignupDetails()
+    }
   };
   function handleInput(e) {
     const { name, value } = e.target;
@@ -49,13 +72,14 @@ export default function AssignMngr({ renderPage,signupData, setSignupData, addSi
             className="w-full px-6 rounded-lg antialiased text-primary font-normal focus:outline-none py-3 border border-slate-300 focus:border-studio-gradient-start/60 focus:ring-1 focus:ring-studio-gradient-start/60 mb-4 placeholder:font-[350]"
           />
         </div>
-        <Link href="/admin-dashboard" className="w-full">
           <Button
             className="cursor-pointer studio-primary-gradient font-inter text-sm md:text-base -tracking-[0.006em] md:-tracking-[0.011em] text-white font-medium antialiased rounded-lg py-2.5 px-6 md:px-8 flex items-center justify-center group w-full"
             btnName="Next"
             onClick={handleClick}
           />
-        </Link>
+          {errorMessage && (
+            <div className="text-red-500 text-xs">{errorMessage}</div>
+          )}
       </div>
     </div>
   );

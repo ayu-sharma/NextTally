@@ -13,7 +13,7 @@ export default function AdminSignupBar({page, setPage}) {
   }
   const SidebarItem = ({ label, currentPage }) => (
     <div
-      className={`flex flex-row items-center gap-3 cursor-pointer rounded-2xl my-2 py-2 px-6 ${isActive(
+      className={`flex flex-row md:items-center gap-3 md:text-sm text-[10px] cursor-default rounded-xl md:rounded-2xl my-2 py-2 px-2 md:px-6 ${isActive(
         currentPage
       )}`}
     >

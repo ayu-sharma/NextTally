@@ -5,6 +5,7 @@ import close from "../../public/images/modalclose.svg";
 import { useRouter } from "next/navigation";
 import { adminLogin } from "../../app/api/authenticateadminapi";
 import { EyeOff, Eye } from "lucide-react";
+import AuthSpinner from "./AuthSpinner";
 
 export default function SigninAdmin({ onClose }) {
   const [details, setDetails] = useState({ email: "", password: "" });
@@ -34,9 +35,9 @@ export default function SigninAdmin({ onClose }) {
 
     setError("");
     setLoading(true);
+
     try {
       const response = await adminLogin(details);
-      console.log("tihs is this", response.success);
       if (response.success) {
         localStorage.setItem("authToken", response.token);
         await router.push("/AdminDashboard");
@@ -48,12 +49,13 @@ export default function SigninAdmin({ onClose }) {
       console.error("Login Error:", err);
       setError("Something went wrong. Please try again later.");
     } finally {
-
+      setLoading(false);
     }
   };
+  if (loading) {
+    return <AuthSpinner />;
+  }
 
-
-  
   isFinite();
   return (
     <>
