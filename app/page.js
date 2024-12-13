@@ -1,15 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import Navbar from "../components/Navbar";
-import logol from "../public/images/logol.svg";
 import HandleModals from "../components/HandleModals";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Testimonial from "../components/Testimonials";
 import ReviewSection from "../components/ReviewSection";
 import { useRouter } from "next/navigation";
+import Footer from "../components/Footer";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,14 +31,6 @@ export default function Home() {
     setIsLoading(false);
   }, [router]);
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-  }, [isOpen]);
-
   const handleMenuClick = (type) => {
     setSelectedMenu(type);
     toggleComponent();
@@ -61,6 +52,7 @@ export default function Home() {
 
   if (isAuthenticated) {
     return (
+      <>
       <div className="flex flex-col justify-between overflow-hidden">
         <div>
           <Navbar menuItems={menuItems} />
@@ -70,7 +62,7 @@ export default function Home() {
           <div className="flex flex-col items-center gap-8 max-w-6xl mx-auto">
             <div>
               <h1 className="text-4xl md:text-6xl lg:text-[5rem] -tracking-[0.022em] font-medium text-center leading-[1.1] whitespace-pre-wrap">
-                <span>Effortlessly manage </span>
+                <span className="text-black">Effortlessly manage </span>
                 <br />
                 <span className="website-color-scheme-text">
                   Taxes, Revenue and Profits{" "}
@@ -90,7 +82,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="flex flex-col items-center max-w-5xl md:mx-auto gap-32 mt-32">
+          <div className="flex flex-col items-center max-w-5xl md:mx-auto gap-32 mt-32 text-black">
             <motion.p
               initial="hidden"
               whileInView="visible"
@@ -138,19 +130,20 @@ export default function Home() {
           </div>
         </div>
 
-        <Testimonial />
-        <ReviewSection />
 
-        {/* Fullscreen Overlay when SigninAdmin is open */}
         <HandleModals
           toggleComponent={toggleComponent}
           isOpen={isOpen}
           selectedMenu={selectedMenu}
         />
       </div>
+      <div className="w-full text-black">
+        <Testimonial />
+        </div>
+        <Footer/>
+        </>
     );
   }
 
-  // Render nothing while redirecting authenticated users
   return null;
 }

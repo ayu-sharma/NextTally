@@ -20,6 +20,7 @@ export default function Pricing() {
     { id: "3 Months", label: "3 Months" },
   ];
 
+  
   return (
     <>
       <Navbar />

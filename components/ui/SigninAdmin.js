@@ -26,11 +26,11 @@ export default function SigninAdmin({ onClose }) {
   const handleLogin = async () => {
     if (!details.email || !details.password) {
       setError("Email and password are required.");
-      return;
+      return false;
     }
     if (!/\S+@\S+\.\S+/.test(details.email)) {
       setError("Please enter a valid email address.");
-      return;
+      return false;
     }
 
     setError("");

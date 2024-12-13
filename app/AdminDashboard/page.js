@@ -10,7 +10,6 @@ import {
   Settings,
   HandHelping,
   LogOut,
-  Import,
 } from "lucide-react";
 import AdminDashboardCmp from "../../components/AdminDashboardCmp";
 import TaxCalc from "../../components/ui/TaxCalc";
@@ -35,7 +34,7 @@ const SidebarItem = ({ id, label, icon, isSelected, onClick }) => (
 );
 
 export default function AdminDashboard() {
-  const [selectedOption, setSelectedOption] = useState("Dashboard");
+  const [selectedOption, setSelectedOption] = useState(selectedO);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
@@ -55,8 +54,23 @@ export default function AdminDashboard() {
     setIsCheckingAuth(false);
   }, [router]);
 
+  useEffect(() => {
+    const options = sessionStorage.getItem("options");
+    console.log("ths is check", options, selectedOption);
+    if (options !== selectedOption) {
+      setSelectedOption(options);
+    } else {
+      setSelectedOption("Dashboard");
+    }
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem("options", selectedOption);
+  }, [selectedOption]);
+
   const handleLogout = () => {
-    localStorage.clear();
+    localStorage.removeItem("authToken");
+    sessionStorage.removeItem("options");
     router.push("/");
   };
 
