@@ -39,7 +39,7 @@ export default function Testimonial() {
         <h2 className="font-inter font-[450] text-3xl md:text-5xl md:leading-[1.15] antialiased text-primary -tracking-[0.021em] md:-tracking-[0.022em] text-left max-w-3xl w-full">
           Feedback That Inspires Us
         </h2>
-        <h3 className="font-inter font-[350] text-lg md:text-xl antialiased text-slate-800 -tracking-[0.014em] md:-tracking-[0.017em] text-left mt-4 max-w-3xl w-full">
+        <h3 className="font-inter font-[350] sm:text-lg text-md md:text-xl antialiased text-slate-800 -tracking-[0.014em] md:-tracking-[0.017em] text-left mt-4 max-w-3xl w-full">
           Real experiences from those who trust us.
           <br /> NextTally empowers theaters with every smart calculation.
         </h3>

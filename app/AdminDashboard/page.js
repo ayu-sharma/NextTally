@@ -34,7 +34,7 @@ const SidebarItem = ({ id, label, icon, isSelected, onClick }) => (
 );
 
 export default function AdminDashboard() {
-  const [selectedOption, setSelectedOption] = useState(selectedO);
+  const [selectedOption, setSelectedOption] = useState("Dashboard");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
